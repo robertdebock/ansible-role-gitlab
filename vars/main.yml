@@ -10,7 +10,6 @@ _gitlab_requirements:
     - gnupg
     - openssh-server
     - perl
-    - postfix
   Ubuntu:
     - apt-transport-https
     - ca-certificates
@@ -19,7 +18,6 @@ _gitlab_requirements:
     - gnupg
     - openssh-server
     - perl
-    - postfix
     - tzdata
   RedHat: &redhat_requirements
     - curl
@@ -27,7 +25,6 @@ _gitlab_requirements:
     - openssh-server
     - perl
     - policycoreutils
-    - postfix
     - procps-ng
     - yum-utils
   CentOS: *redhat_requirements

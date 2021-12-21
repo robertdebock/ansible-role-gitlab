@@ -3,7 +3,7 @@ galaxy_info:
   author: Robert de Bock
   role_name: gitlab
   namespace: robertdebock
-  description: Install and configure gitlab on your system.
+  description: Install and configure GitLab on your system.
   license: Apache-2.0
   company: none
   min_ansible_version: "2.10"

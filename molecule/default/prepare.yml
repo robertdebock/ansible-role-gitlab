@@ -6,3 +6,5 @@
 
   roles:
     - role: robertdebock.bootstrap
+    - role: robertdebock.core_dependencies
+    - role: robertdebock.postfix
