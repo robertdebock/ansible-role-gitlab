@@ -1,0 +1,8 @@
+---
+#
+# Ansible managed
+#
+repository:
+  description: Install and configure gitlab on your system.
+  homepage: https://robertdebock.nl/
+  topics: gitlab, ansible, molecule, tox, playbook, hacktoberfest

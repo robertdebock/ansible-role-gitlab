@@ -1,0 +1,23 @@
+---
+- name: Verify
+  hosts: all
+  become: yes
+  gather_facts: no
+
+  tasks:
+    - name: check gitlab-runsvdir service
+      service:
+        name: gitlab-runsvdir
+      check_mode: yes
+      register: gitlab_service_check
+      failed_when:
+        - gitlab_service_check is changed
+
+    - name: check gitlab status
+      command:
+        cmd: gitlab-ctl status
+      changed_when: no
+
+    - name: see if web interface can be used
+      uri:
+        url: http://localhost/users/sign_in
