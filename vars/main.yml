@@ -37,12 +37,11 @@ _gitlab_distribution_abbreviation:
   enterprise: ee
 
 gitlab_distribution_abbreviation: "{{ _gitlab_distribution_abbreviation[gitlab_distribution] }}"
+
 _gitlab_repository_url:
-  Ubuntu: "https://packages.gitlab.com/gitlab/gitlab-{{ gitlab_distribution_abbreviation }}/{{ ansible_distribution | lower }}/"
-  RedHat: &redhat_reporitory_url "https://packages.gitlab.com/gitlab/gitlab-{{ gitlab_distribution_abbreviation }}/el/{{ ansible_distribution_major_version }}/$basearch"
-  CentOS: *redhat_reporitory_url
-  Rocky: *redhat_reporitory_url
-gitlab_repository_url: "{{ _gitlab_repository_url[ansible_distribution] }}"
+  Debian: "https://packages.gitlab.com/gitlab/gitlab-{{ gitlab_distribution_abbreviation }}/{{ ansible_distribution | lower }}/"
+  RedHat: "https://packages.gitlab.com/gitlab/gitlab-{{ gitlab_distribution_abbreviation }}/el/{{ ansible_distribution_major_version }}/$basearch"
+gitlab_repository_url: "{{ _gitlab_repository_url[ansible_os_family] }}"
 
 gitlab_repository_name: gitlab_gitlab-{{ gitlab_distribution_abbreviation }}
 
