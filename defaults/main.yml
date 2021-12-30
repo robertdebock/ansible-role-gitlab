@@ -34,3 +34,11 @@ gitlab_distribution: community
 # indigo, dark, light, blue, green, lightindigo, lightblue, lightgreen,
 # red or lightred. (Nerds call "pink" "redlight")
 gitlab_default_theme: dark
+
+# You can disable features for newly created projects.
+gitlab_default_projects_features_issues: yes
+gitlab_default_projects_features_merge_requests: yes
+gitlab_default_projects_features_wiki: yes
+gitlab_default_projects_features_snippets: yes
+gitlab_default_projects_features_builds: yes
+gitlab_default_projects_features_container_registry: yes

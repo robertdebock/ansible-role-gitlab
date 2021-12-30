@@ -46,3 +46,20 @@
       - gitlab_default_theme is string
       - gitlab_default_theme in [ "indigo", "dark", "light", "blue", "green", "lightindigo", "lightblue", "lightgreen", "red", "lightred" ]
     quiet: yes
+
+- name: test if gitlab_default_projects_feature_* are set correctly
+  ansible.builtin.assert:
+    that:
+      - gitlab_default_projects_features_issues is defined
+      - gitlab_default_projects_features_issues is boolean
+      - gitlab_default_projects_features_merge_requests is defined
+      - gitlab_default_projects_features_merge_requests is boolean
+      - gitlab_default_projects_features_wiki is defined
+      - gitlab_default_projects_features_wiki is boolean
+      - gitlab_default_projects_features_snippets is defined
+      - gitlab_default_projects_features_snippets is boolean
+      - gitlab_default_projects_features_builds is defined
+      - gitlab_default_projects_features_builds is boolean
+      - gitlab_default_projects_features_container_registry is defined
+      - gitlab_default_projects_features_container_registry
+    quiet: yes

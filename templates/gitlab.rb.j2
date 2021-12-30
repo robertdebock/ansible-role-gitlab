@@ -134,12 +134,12 @@ roles [{% for role in gitlab_roles %}'{{ role }}'{{ ", " if not loop.last }}{% e
 gitlab_rails['gitlab_default_theme'] = {{ gitlab_default_theme_number }}
 
 ### Default project feature settings
-# gitlab_rails['gitlab_default_projects_features_issues'] = true
-# gitlab_rails['gitlab_default_projects_features_merge_requests'] = true
-# gitlab_rails['gitlab_default_projects_features_wiki'] = true
-# gitlab_rails['gitlab_default_projects_features_snippets'] = true
-# gitlab_rails['gitlab_default_projects_features_builds'] = true
-# gitlab_rails['gitlab_default_projects_features_container_registry'] = true
+gitlab_rails['gitlab_default_projects_features_issues'] = {{ gitlab_default_projects_features_issues }}
+gitlab_rails['gitlab_default_projects_features_merge_requests'] = {{ gitlab_default_projects_features_merge_requests }}
+gitlab_rails['gitlab_default_projects_features_wiki'] = {{ gitlab_default_projects_features_wiki }}
+gitlab_rails['gitlab_default_projects_features_snippets'] = {{ gitlab_default_projects_features_snippets }}
+gitlab_rails['gitlab_default_projects_features_builds'] = {{ gitlab_default_projects_features_builds }}
+gitlab_rails['gitlab_default_projects_features_container_registry'] = {{ gitlab_default_projects_features_container_registry }}
 
 ### Automatic issue closing
 ###! See https://docs.gitlab.com/ee/customization/issue_closing.html for more

@@ -18,6 +18,8 @@ This example is taken from `molecule/default/converge.yml` and is tested on each
 
   roles:
     - role: robertdebock.gitlab
+      # gitlab_roles:
+      #   - application_role
 ```
 
 The machine needs to be prepared. In CI this is done using `molecule/default/prepare.yml`:
@@ -48,7 +50,7 @@ The default values for the variables are set in `defaults/main.yml`:
 # community: https://packages.gitlab.com/gitlab/gitlab-ce
 # enterprise: https://packages.gitlab.com/gitlab/gitlab-ee
 # gitlab_version: 14.5.2
-gitlab_version: 14.1.8
+gitlab_version: 14.6.0
 
 # A part of the version is the "release", mostly "0". See repositories above.
 gitlab_release: 0
@@ -59,6 +61,31 @@ gitlab_external_url: "http://localhost"
 
 # Choose to install "enterprise" or "community".
 gitlab_distribution: community
+
+# You can install all roles but not specifying any role, or select a few roles.
+# gitlab_roles:
+#   - redis_sentinel_role
+#   - redis_master_role
+#   - redis_replica_role
+#   - geo_primary_role
+#   - geo_secondary_role
+#   - postgres_role
+#   - consul_role
+#   - application_role
+#   - monitoring_role
+
+# You can set the default theme for the GitLab ui. Pick any one from:
+# indigo, dark, light, blue, green, lightindigo, lightblue, lightgreen,
+# red or lightred. (Nerds call "pink" "redlight")
+gitlab_default_theme: dark
+
+# You can disable features for newly created projects.
+gitlab_default_projects_features_issues: yes
+gitlab_default_projects_features_merge_requests: yes
+gitlab_default_projects_features_wiki: yes
+gitlab_default_projects_features_snippets: yes
+gitlab_default_projects_features_builds: yes
+gitlab_default_projects_features_container_registry: yes
 ```
 
 ## [Requirements](#requirements)
