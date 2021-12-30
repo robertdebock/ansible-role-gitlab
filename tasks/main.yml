@@ -45,8 +45,6 @@
 - name: install gitlab
   ansible.builtin.package:
     name: "{{ gitlab_package }}"
-  environment:
-    EXTERNAL_URL: "{{ gitlab_external_url }}"
 
 - name: place configuration
   ansible.builtin.template:
