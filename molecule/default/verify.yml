@@ -6,7 +6,7 @@
 
   tasks:
     - name: check gitlab-runsvdir service
-      service:
+      ansible.builtin.service:
         name: gitlab-runsvdir
       check_mode: yes
       register: gitlab_service_check
@@ -14,10 +14,10 @@
         - gitlab_service_check is changed
 
     - name: check gitlab status
-      command:
+      ansible.builtin.command:
         cmd: gitlab-ctl status
       changed_when: no
 
     - name: see if web interface can be used
-      uri:
+      ansible.builtin.uri:
         url: http://localhost/users/sign_in

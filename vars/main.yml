@@ -58,3 +58,17 @@ _gitlab_package:
 gitlab_package: "{{ _gitlab_package[ansible_os_family] }}"
 
 gitlab_root_password_command: "gitlab-rails runner 'user = User.where(id: 1).first; user.password = {{ gitlab_root_password }}; user.password_confirmation = {{ gitlab_root_password }}; user.save!'"
+
+_gitlab_default_theme_number:
+  indigo: 1
+  dark: 2
+  light: 3
+  blue: 4
+  green: 5
+  lightindigo: 6
+  lightblue: 7
+  lightgreen: 8
+  red: 9
+  lightred: 10
+
+gitlab_default_theme_number: "{{ _gitlab_default_theme_number[gitlab_default_theme] }}"

@@ -7,13 +7,13 @@
   delegate_to: localhost
 
 - name: install requirements
-  package:
+  ansible.builtin.package:
     name: "{{ gitlab_requirements }}"
 
 - name: execute apt tasks
   block:
     - name: install apt repository key
-      apt_key:
+      ansible.builtin.apt_key:
         url: "https://packages.gitlab.com/gpg.key"
 
     - name: install apt repository
@@ -26,11 +26,11 @@
 - name: execute yum/dnf tasks
   block:
     - name: install rpm repository key
-      rpm_key:
+      ansible.builtin.rpm_key:
         key: "https://packages.gitlab.com/gitlab/gitlab-{{ gitlab_distribution_abbreviation }}/gpgkey/gitlab-gitlab-{{ gitlab_distribution_abbreviation }}-3D645A26AB9FBD22.pub.gpg"
 
     - name: install yum/dnf repository
-      yum_repository:
+      ansible.builtin.yum_repository:
         name: "{{ gitlab_repository_name }}"
         description: "{{ gitlab_repository_name }}"
         file: /etc/yum.repos.d/{{ gitlab_repository_name }}.repo
@@ -43,9 +43,17 @@
     - ansible_pkg_mgr in [ "dnf", "yum" ]
 
 - name: install gitlab
-  package:
+  ansible.builtin.package:
     name: "{{ gitlab_package }}"
   environment:
     EXTERNAL_URL: "{{ gitlab_external_url }}"
+
+- name: place configuration
+  ansible.builtin.template:
+    src: gitlab.rb.j2
+    dest: /etc/gitlab/gitlab.rb
+    owner: root
+    group: root
+    mode: "0600"
   notify:
     - run gitlab-ctl reconfigure

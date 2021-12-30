@@ -21,3 +21,28 @@
       - gitlab_distribution is string
       - gitlab_distribution in [ "community", "enterprise" ]
     quiet: yes
+
+- name: test if gitlab_roles is set correctly
+  ansible.builtin.assert:
+    that:
+      - gitlab_roles is iterable
+    quiet: yes
+  when:
+    - gitlab_roles is defined
+
+- name: test if item in gitlab_roles is set correctly
+  ansible.builtin.assert:
+    that:
+      - item in [ "redis_sentinel_role", "redis_master_role", "redis_replica_role", "geo_primary_role", "geo_secondary_role", "postgres_role", "consul_role", "application_role", "monitoring_role" ]
+    quiet: yes
+  loop: "{{ gitlab_roles }}"
+  when:
+    - gitlab_roles is defined
+
+- name: test if gitlab_default_theme is set correctly
+  ansible.builtin.assert:
+    that:
+      - gitlab_default_theme is defined
+      - gitlab_default_theme is string
+      - gitlab_default_theme in [ "indigo", "dark", "light", "blue", "green", "lightindigo", "lightblue", "lightgreen", "red", "lightred" ]
+    quiet: yes

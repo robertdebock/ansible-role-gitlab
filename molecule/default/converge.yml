@@ -6,3 +6,5 @@
 
   roles:
     - role: ansible-role-gitlab
+      # gitlab_roles:
+      #   - application_role
