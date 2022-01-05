@@ -18,8 +18,6 @@ This example is taken from `molecule/default/converge.yml` and is tested on each
 
   roles:
     - role: robertdebock.gitlab
-      # gitlab_roles:
-      #   - application_role
 ```
 
 The machine needs to be prepared. In CI this is done using `molecule/default/prepare.yml`:
@@ -49,8 +47,7 @@ The default values for the variables are set in `defaults/main.yml`:
 # Please have a look at this repository for available package version:
 # community: https://packages.gitlab.com/gitlab/gitlab-ce
 # enterprise: https://packages.gitlab.com/gitlab/gitlab-ee
-# gitlab_version: 14.5.2
-gitlab_version: 14.6.0
+gitlab_version: 14.6.1
 
 # A part of the version is the "release", mostly "0". See repositories above.
 gitlab_release: 0
