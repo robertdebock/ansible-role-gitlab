@@ -45,8 +45,6 @@
 - name: install gitlab
   ansible.builtin.package:
     name: "{{ gitlab_package }}"
-  notify:
-    - run gitlab-ctl reconfigure
 
 - name: place configuration
   ansible.builtin.template:
