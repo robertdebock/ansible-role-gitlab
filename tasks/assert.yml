@@ -22,6 +22,13 @@
       - gitlab_distribution in [ "community", "enterprise" ]
     quiet: yes
 
+- name: test if gitlab_cleanup_ruby is set correctly
+  ansible.builtin.assert:
+    that:
+      - gitlab_cleanup_ruby is defined
+      - gitlab_cleanup_ruby is boolean
+    quiet: yes
+
 - name: test if gitlab_roles is set correctly
   ansible.builtin.assert:
     that:
@@ -63,3 +70,98 @@
       - gitlab_default_projects_features_container_registry is defined
       - gitlab_default_projects_features_container_registry
     quiet: yes
+
+- name: test if gitlab_rails_ldap_enabled is set correctly
+  ansible.builtin.assert:
+    that:
+      - gitlab_rails_ldap_enabled is defined
+      - gitlab_rails_ldap_enabled is boolean
+    quiet: yes
+
+- name: test if gitlab_rails_prevent_ldap_sign_in is set correctly
+  ansible.builtin.assert:
+    that:
+      - gitlab_rails_prevent_ldap_sign_in is defined
+      - gitlab_rails_prevent_ldap_sign_in is boolean
+    quiet: yes
+
+- name: test if gitlab_rails_ldap_servers is set correctly
+  ansible.builtin.assert:
+    that:
+      - gitlab_rails_ldap_servers is iterable
+    quiet: yes
+  when:
+    - gitlab_rails_ldap_enabled
+
+- name: test if item in gitlab_rails_ldap_servers is set correctly
+  ansible.builtin.assert:
+    that:
+      - item.name is defined
+      - item.name is string
+      - item.label is defined
+      - item.port is defined
+      - item.port is number
+      - item.uid is defined
+      - item.uid is string
+      - item.bind_dn is defined
+      - item.bind_dn is string
+      - item.password is defined
+      - item.password is string
+      - item.encryption is defined
+      - item.encryption is string
+      - item.encryption in [ "plain", "simple_tls", "start_tls" ]
+      - item.verify_certificates is defined
+      - item.verify_certificates is boolean
+      - item.smartcard_auth is defined
+      - item.smartcard_auth is boolean
+      - item.active_directory is defined
+      - item.active_directory is boolean
+      - item.allow_username_or_email_login is defined
+      - item.allow_username_or_email_login is boolean
+      - item.lowercase_usernames is defined
+      - item.lowercase_usernames is boolean
+      - item.block_auto_created_users is defined
+      - item.block_auto_created_users is boolean
+      - item.base is defined
+      - item.base is string
+      - item.user_filter is defined
+      - item.user_filter is string
+    quiet: yes
+  loop: "{{ gitlab_rails_ldap_servers }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - gitlab_rails_ldap_enabled
+
+- name: test if enterprise item in gitlab_rails_ldap_servers is set correctly
+  ansible.builtin.assert:
+    that:
+      - item.group_base is defined
+      - item.group_base is string
+      - item.admin_group is defined
+      - item.admin_group is string
+      - item.sync_ssh_keys is defined
+      - item.sync_ssh_keys is boolean
+    quiet: yes
+  loop: "{{ gitlab_rails_ldap_servers }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - gitlab_rails_ldap_enabled
+
+- name: test if enterprise item in gitlab_rails_ldap_servers is not set
+  ansible.builtin.assert:
+    that:
+      - item.group_base is not defined
+      - item.group_base is not string
+      - item.admin_group is not defined
+      - item.admin_group is not string
+      - item.sync_ssh_keys not is defined
+      - item.sync_ssh_keys not is boolean
+    quiet: yes
+  loop: "{{ gitlab_rails_ldap_servers }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - gitlab_rails_ldap_server is defined
+    - gitlab_distribution == "community"

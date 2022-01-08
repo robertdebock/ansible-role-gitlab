@@ -17,6 +17,12 @@ gitlab_external_url: "http://localhost"
 # Choose to install "enterprise" or "community".
 gitlab_distribution: community
 
+# The syntax of `gitlab.rb` will be tested before applying this role. The
+# package `ruby` is required for that. By default `ruby` is installed and
+# uninstalled. This makes the role not idempotent, so CI ruby is not un-
+# installed.
+gitlab_cleanup_ruby: yes
+
 # You can install all roles but not specifying any role, or select a few roles.
 # gitlab_roles:
 #   - redis_sentinel_role
@@ -41,3 +47,52 @@ gitlab_default_projects_features_wiki: yes
 gitlab_default_projects_features_snippets: yes
 gitlab_default_projects_features_builds: yes
 gitlab_default_projects_features_container_registry: yes
+
+# LDAP can be configured with the below variables.
+gitlab_rails_ldap_enabled: no
+gitlab_rails_prevent_ldap_sign_in: no
+# When `gitlab_rails_ldap_enabled` is set to `yes`, you need to define (at
+# least on) `gitlab_rails_ldap_servers`.
+# gitlab_rails_ldap_servers:
+#   - name: main
+#     label: LDAP
+#     host: _your_ldap_server
+#     port: 389
+#     uid: sAMAccountName
+#     bind_dn: _the_full_dn_of_the_user_you_will_bind_with
+#     password: _the_password_of_the_bind_user
+#     encryption: plain
+#     verify_certificates: yes
+#     smartcard_auth: yes
+#     active_directory: yes
+#     allow_username_or_email_login: no
+#     lowercase_usernames: no
+#     block_auto_created_users: no
+#     base: ""
+#     user_filter: ""
+#     # These settings are only available when `gitlab_distribution` is set to
+#     # the value `enterprise`.
+#     # group_base: ""
+#     # admin_group: ""
+#     # sync_ssh_keys: no
+#   - name: secondary
+#     label: LDAP
+#     host: _your_ldap_server
+#     port: 389
+#     uid: sAMAccountName
+#     bind_dn: _the_full_dn_of_the_user_you_will_bind_with
+#     password: _the_password_of_the_bind_user
+#     encryption: plain
+#     verify_certificates: yes
+#     smartcard_auth: yes
+#     active_directory: yes
+#     allow_username_or_email_login: no
+#     lowercase_usernames: no
+#     block_auto_created_users: no
+#     base: ""
+#     user_filter: ""
+#     # These settings are only available when `gitlab_distribution` is set to
+#     # the value `enterprise`.
+#     # group_base: ""
+#     # admin_group: ""
+#     # sync_ssh_keys: no

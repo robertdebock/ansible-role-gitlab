@@ -6,3 +6,4 @@
 
   roles:
     - role: ansible-role-gitlab
+      gitlab_cleanup_ruby: no

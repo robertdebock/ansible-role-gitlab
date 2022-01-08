@@ -10,6 +10,12 @@
   ansible.builtin.package:
     name: "{{ gitlab_requirements }}"
 
+- name: install ruby to allow syntax check of gitlab.rb
+  ansible.builtin.package:
+    name: ruby
+  notify:
+    - uninstall ruby
+
 - name: execute apt tasks
   block:
     - name: install apt repository key
@@ -53,5 +59,6 @@
     owner: root
     group: root
     mode: "0600"
+    validate: ruby -c %s
   notify:
     - run gitlab-ctl reconfigure
