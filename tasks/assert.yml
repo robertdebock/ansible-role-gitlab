@@ -216,7 +216,7 @@
   when:
     - gitlab_rails_backup_keep_time is defined
 
-- name: test if gitlab_rails_backup_upload_connection is set correctly
+- name: test if items in gitlab_rails_backup_upload_connection is set correctly
   ansible.builtin.assert:
     that:
       - gitlab_rails_backup_upload_connection is mapping
@@ -227,7 +227,7 @@
   when:
     - gitlab_rails_backup_upload_connection is defined
 
-- name: test if gitlab_rails_backup_upload_connection is set correctly
+- name: test if aws items in gitlab_rails_backup_upload_connection is set correctly
   ansible.builtin.assert:
     that:
       - gitlab_rails_backup_upload_connection.aws_access_key_id is defined
@@ -241,7 +241,7 @@
     - gitlab_rails_backup_upload_connection is defined
     - gitlab_rails_backup_upload_connection.provider == "AWS"
 
-- name: test if gitlab_rails_backup_upload_connection is set correctly
+- name: test if azure items in gitlab_rails_backup_upload_connection is set correctly
   ansible.builtin.assert:
     that:
       - gitlab_rails_backup_upload_connection.azure_storage_account_name is defined
@@ -253,7 +253,7 @@
     - gitlab_rails_backup_upload_connection is defined
     - gitlab_rails_backup_upload_connection.provider == "AzureRM"
 
-- name: test if gitlab_rails_backup_upload_connection is set correctly
+- name: test if azure_storage_domain in gitlab_rails_backup_upload_connection is set correctly
   ansible.builtin.assert:
     that:
       - gitlab_rails_backup_upload_connection.azure_storage_domain is boolean
@@ -262,7 +262,7 @@
     - gitlab_rails_backup_upload_connection is defined
     - gitlab_rails_backup_upload_connection.azure_storage_domain is defined
 
-- name: test if gitlab_rails_backup_upload_connection is set correctly
+- name: test if google items in gitlab_rails_backup_upload_connection is set correctly
   ansible.builtin.assert:
     that:
       - gitlab_rails_backup_upload_connection.google_storage_access_key_id is defined
