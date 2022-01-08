@@ -158,8 +158,8 @@ gitlab_rails_backup_multipart_chunk_size: 104857600
 gitlab_rails_backup_encryption: AES256
 gitlab_rails_backup_encryption_key: "base64-encoded encryption key"
 gitlab_rails_backup_upload_storage_options:
- server_side_encryption: "aws:kms"
- server_side_encryption_kms_key_id: "arn:aws:kms:YOUR-KEY-ID-HERE"
+  server_side_encryption: "aws:kms"
+  server_side_encryption_kms_key_id: "arn:aws:kms:YOUR-KEY-ID-HERE"
 gitlab_rails_backup_storage_class: STANDARD
 gitlab_rails_env:
   SKIP: db,uploads,repositories,builds,artifacts,lfs,registry,pages
