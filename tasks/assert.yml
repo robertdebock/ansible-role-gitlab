@@ -165,3 +165,183 @@
   when:
     - gitlab_rails_ldap_server is defined
     - gitlab_distribution == "community"
+
+##########
+
+- name: test if gitlab_rails_manage_backup_path is set correctly
+  ansible.builtin.assert:
+    that:
+      - gitlab_rails_manage_backup_path is boolean
+    quiet: yes
+  when:
+    - gitlab_rails_manage_backup_path is defined
+
+- name: test if gitlab_rails_backup_path is set correctly
+  ansible.builtin.assert:
+    that:
+      - gitlab_rails_backup_path is string
+    quiet: yes
+  when:
+    - gitlab_rails_backup_path is defined
+
+- name: test if gitlab_rails_backup_gitaly_backup_path is set correctly
+  ansible.builtin.assert:
+    that:
+      - gitlab_rails_backup_gitaly_backup_path is string
+    quiet: yes
+  when:
+    - gitlab_rails_backup_gitaly_backup_path is defined
+
+- name: test if gitlab_rails_backup_archive_permissions is set correctly
+  ansible.builtin.assert:
+    that:
+      - gitlab_rails_backup_archive_permissions is string
+    quiet: yes
+  when:
+    - gitlab_rails_backup_archive_permissions is defined
+
+- name: test if gitlab_rails_backup_pg_schema is set correctly
+  ansible.builtin.assert:
+    that:
+      - gitlab_rails_backup_pg_schema is string
+    quiet: yes
+  when:
+    - gitlab_rails_backup_pg_schema is defined
+
+- name: test if gitlab_rails_backup_keep_time is set correctly
+  ansible.builtin.assert:
+    that:
+      - gitlab_rails_backup_keep_time is number
+    quiet: yes
+  when:
+    - gitlab_rails_backup_keep_time is defined
+
+- name: test if gitlab_rails_backup_upload_connection is set correctly
+  ansible.builtin.assert:
+    that:
+      - gitlab_rails_backup_upload_connection is mapping
+      - gitlab_rails_backup_upload_connection.provider is defined
+      - gitlab_rails_backup_upload_connection.provider is string
+      - gitlab_rails_backup_upload_connection.provider in [ "AWS", "AzureRM", "Google", "Local" ]
+    quiet: yes
+  when:
+    - gitlab_rails_backup_upload_connection is defined
+
+- name: test if gitlab_rails_backup_upload_connection is set correctly
+  ansible.builtin.assert:
+    that:
+      - gitlab_rails_backup_upload_connection.aws_access_key_id is defined
+      - gitlab_rails_backup_upload_connection.aws_access_key_id is string
+      - gitlab_rails_backup_upload_connection.aws_secret_access_key is defined
+      - gitlab_rails_backup_upload_connection.aws_secret_access_key is string
+      - gitlab_rails_backup_upload_connection.use_iam_profile is defined
+      - gitlab_rails_backup_upload_connection.use_iam_profile is boolean
+    quiet: yes
+  when:
+    - gitlab_rails_backup_upload_connection is defined
+    - gitlab_rails_backup_upload_connection.provider == "AWS"
+
+- name: test if gitlab_rails_backup_upload_connection is set correctly
+  ansible.builtin.assert:
+    that:
+      - gitlab_rails_backup_upload_connection.azure_storage_account_name is defined
+      - gitlab_rails_backup_upload_connection.azure_storage_account_name is string
+      - gitlab_rails_backup_upload_connection.azure_storage_access_key is defined
+      - gitlab_rails_backup_upload_connection.azure_storage_access_key is string
+    quiet: yes
+  when:
+    - gitlab_rails_backup_upload_connection is defined
+    - gitlab_rails_backup_upload_connection.provider == "AzureRM"
+
+- name: test if gitlab_rails_backup_upload_connection is set correctly
+  ansible.builtin.assert:
+    that:
+      - gitlab_rails_backup_upload_connection.azure_storage_domain is boolean
+    quiet: yes
+  when:
+    - gitlab_rails_backup_upload_connection is defined
+    - gitlab_rails_backup_upload_connection.azure_storage_domain is defined
+
+- name: test if gitlab_rails_backup_upload_connection is set correctly
+  ansible.builtin.assert:
+    that:
+      - gitlab_rails_backup_upload_connection.google_storage_access_key_id is defined
+      - gitlab_rails_backup_upload_connection.google_storage_access_key_id is string
+      - gitlab_rails_backup_upload_connection.google_storage_secret_access_key is defined
+      - gitlab_rails_backup_upload_connection.google_storage_secret_access_key is string
+    quiet: yes
+  when:
+    - gitlab_rails_backup_upload_connection is defined
+    - gitlab_rails_backup_upload_connection.provider == "Google"
+
+- name: test if gitlab_rails_backup_upload_connection is set correctly
+  ansible.builtin.assert:
+    that:
+      - gitlab_rails_backup_upload_connection.local_root is defined
+      - gitlab_rails_backup_upload_connection.local_root is string
+    quiet: yes
+  when:
+    - gitlab_rails_backup_upload_connection is defined
+    - gitlab_rails_backup_upload_connection.provider == "Local"
+
+- name: test if gitlab_rails_backup_upload_remote_directory is set correctly
+  ansible.builtin.assert:
+    that:
+      - gitlab_rails_backup_upload_remote_directory is string
+    quiet: yes
+  when:
+    - gitlab_rails_backup_upload_remote_directory is defined
+
+- name: test if gitlab_rails_backup_multipart_chunk_size is set correctly
+  ansible.builtin.assert:
+    that:
+      - gitlab_rails_backup_multipart_chunk_size is number
+    quiet: yes
+  when:
+    - gitlab_rails_backup_multipart_chunk_size is defined
+
+- name: test if gitlab_rails_backup_encryption is set correctly
+  ansible.builtin.assert:
+    that:
+      - gitlab_rails_backup_encryption is string
+    quiet: yes
+  when:
+    - gitlab_rails_backup_encryption is defined
+
+- name: test if gitlab_rails_backup_encryption_key is set correctly
+  ansible.builtin.assert:
+    that:
+      - gitlab_rails_backup_encryption_key is string
+    quiet: yes
+  when:
+    - gitlab_rails_backup_encryption_key is defined
+
+- name: test if gitlab_rails_backup_upload_storage_options is set correctly
+  ansible.builtin.assert:
+    that:
+      - gitlab_rails_backup_upload_storage_options is defined
+      - gitlab_rails_backup_upload_storage_options is mapping
+      - gitlab_rails_backup_upload_storage_options.server_side_encryption is defined
+      - gitlab_rails_backup_upload_storage_options.server_side_encryption is string
+      - gitlab_rails_backup_upload_storage_options.server_side_encryption_kms_key_id is defined
+      - gitlab_rails_backup_upload_storage_options.server_side_encryption_kms_key_id is string
+    quiet: yes
+  when:
+    - gitlab_rails_backup_encryption_key is defined
+
+- name: test if gitlab_rails_backup_storage_class is set correctly
+  ansible.builtin.assert:
+    that:
+      - gitlab_rails_backup_storage_class is string
+      - gitlab_rails_backup_storage_class in [ "REDUCED_REDUNDANCY", "STANDARD", "STANDARD_IA" ]
+    quiet: yes
+  when:
+    - gitlab_rails_backup_storage_class is defined
+
+- name: test if gitlab_rails_env is set correctly
+  ansible.builtin.assert:
+    that:
+      - gitlab_rails_env is mapping
+    quiet: yes
+  when:
+    - gitlab_rails_env is defined

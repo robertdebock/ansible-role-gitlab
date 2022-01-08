@@ -539,52 +539,85 @@ EOS
 ### Backup Settings
 ###! Docs: https://docs.gitlab.com/omnibus/settings/backups.html
 
-# gitlab_rails['manage_backup_path'] = true
-# gitlab_rails['backup_path'] = "/var/opt/gitlab/backups"
-# gitlab_rails['backup_gitaly_backup_path'] = "/opt/gitlab/embedded/bin/gitaly-backup"
+{% if manage_backup_path is defined %}
+gitlab_rails['manage_backup_path'] = {{ gitlab_rails_manage_backup_path | string | lower }}
+{% endif %}
 
+{% if gitlab_rails_backup_path is defined %}
+gitlab_rails['backup_path'] = "{{ gitlab_rails_backup_path }}"
+{% endif %}
+
+{% if gitlab_rails_backup_gitaly_backup_path is defined %}
+gitlab_rails['backup_gitaly_backup_path'] = "{{ gitlab_rails_backup_gitaly_backup_path }}"
+{% endif %}
+
+{% if gitlab_rails_backup_archive_permissions is defined %}
 ###! Docs: https://docs.gitlab.com/ee/raketasks/backup_restore.html#backup-archive-permissions
-# gitlab_rails['backup_archive_permissions'] = 0644
+gitlab_rails['backup_archive_permissions'] = {{ gitlab_rails_backup_archive_permissions }}
+{% endif %}
 
-# gitlab_rails['backup_pg_schema'] = 'public'
+{% if gitlab_rails_backup_pg_schema is defined %}
+gitlab_rails['backup_pg_schema'] = '{{ gitlab_rails_backup_pg_schema }}'
+{% endif %}
 
+{% if gitlab_rails_backup_keep_time is defined %}
 ###! The duration in seconds to keep backups before they are allowed to be deleted
-# gitlab_rails['backup_keep_time'] = 604800
+gitlab_rails['backup_keep_time'] = {{ gitlab_rails_backup_keep_time }}
+{% endif %}
 
-# gitlab_rails['backup_upload_connection'] = {
-#   'provider' => 'AWS',
-#   'region' => 'eu-west-1',
-#   'aws_access_key_id' => 'AKIAKIAKI',
-#   'aws_secret_access_key' => 'secret123',
-#   # # If IAM profile use is enabled, remove aws_access_key_id and aws_secret_access_key
-#   'use_iam_profile' => false
-# }
-# gitlab_rails['backup_upload_remote_directory'] = 'my.s3.bucket'
-# gitlab_rails['backup_multipart_chunk_size'] = 104857600
+{% if gitlab_rails_backup_upload_connection is defined %}
+gitlab_rails['backup_upload_connection'] = {
+  'provider' => '{{ gitlab_rails_backup_upload_connection.provider }}',
+  'region' => '{{ gitlab_rails_backup_upload_connection.region }}',
+  'aws_access_key_id' => '{{ gitlab_rails_backup_upload_connection.aws_access_key_id }}',
+  'aws_secret_access_key' => '{{ gitlab_rails_backup_upload_connection.aws_secret_access_key }}',
+  # # If IAM profile use is enabled, remove aws_access_key_id and aws_secret_access_key
+  'use_iam_profile' => {{ gitlab_rails_backup_upload_connection.use_iam_profile | string | lower }}
+}
+{% endif %}
 
+{% if gitlab_rails_backup_upload_remote_directory is defined %}
+gitlab_rails['backup_upload_remote_directory'] = '{{ gitlab_rails_backup_upload_remote_directory }}'
+{% endif %}
+
+{% if gitlab_rails_backup_multipart_chunk_size is defined %}
+gitlab_rails['backup_multipart_chunk_size'] = {{ gitlab_rails_backup_multipart_chunk_size }}
+{% endif %}
+
+{% if gitlab_rails_backup_encryption is defined %}
 ###! **Turns on AWS Server-Side Encryption with Amazon S3-Managed Keys for
 ###!   backups**
-# gitlab_rails['backup_encryption'] = 'AES256'
+gitlab_rails['backup_encryption'] = '{{ gitlab_rails_backup_encryption }}'
+{% endif %}
+
+{% if gitlab_rails_backup_encryption_key is defined %}
 ###! The encryption key to use with AWS Server-Side Encryption.
 ###! Setting this value will enable Server-Side Encryption with customer provided keys;
 ###!   otherwise S3-managed keys are used.
-# gitlab_rails['backup_encryption_key'] = '<base64-encoded encryption key>'
+gitlab_rails['backup_encryption_key'] = '{{ gitlab_rails_backup_encryption_key }}'
+{% endif %}
 
+{% if gitlab_rails_backup_upload_storage_options is defined %}
 ###! **Turns on AWS Server-Side Encryption with Amazon SSE-KMS (AWS managed but customer-master key)
-# gitlab_rails['backup_upload_storage_options'] = {
-#  'server_side_encryption' => 'aws:kms',
-#  'server_side_encryption_kms_key_id' => 'arn:aws:kms:YOUR-KEY-ID-HERE'
-# }
+gitlab_rails['backup_upload_storage_options'] = {
+ 'server_side_encryption' => '{{ gitlab_rails_backup_upload_storage_options.server_side_encryption }}',
+ 'server_side_encryption_kms_key_id' => '{{ gitlab_rails_backup_upload_storage_options.server_side_encryption_kms_key_id }}'
+}
+{% endif %}
 
+{% if gitlab_rails_backup_storage_class is defined %}
 ###! **Specifies Amazon S3 storage class to use for backups. Valid values
 ###!   include 'STANDARD', 'STANDARD_IA', and 'REDUCED_REDUNDANCY'**
-# gitlab_rails['backup_storage_class'] = 'STANDARD'
+gitlab_rails['backup_storage_class'] = '{{ gitlab_rails_backup_storage_class }}'
+{% endif %}
 
+{% if gitlab_rails_env is defined %}
 ###! Skip parts of the backup. Comma separated.
 ###! Docs: https://docs.gitlab.com/ee/raketasks/backup_restore.html#excluding-specific-directories-from-the-backup
-#gitlab_rails['env'] = {
-#    "SKIP" => "db,uploads,repositories,builds,artifacts,lfs,registry,pages"
-#}
+gitlab_rails['env'] = {
+  "SKIP" => "{{ gitlab_rails_env.SKIP }}"
+}
+{% endif %}
 
 ### Pseudonymizer Settings
 # gitlab_rails['pseudonymizer_manifest'] = 'config/pseudonymizer.yml'
