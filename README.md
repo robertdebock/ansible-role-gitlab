@@ -147,37 +147,20 @@ gitlab_rails_backup_gitaly_backup_path: /opt/gitlab/embedded/bin/gitaly-backup
 gitlab_rails_backup_archive_permissions: "0644"
 gitlab_rails_backup_pg_schema: public
 gitlab_rails_backup_keep_time: 604800
-
 gitlab_rails_backup_upload_connection:
   provider: AWS
   region: eu-west-1
   aws_access_key_id: AKIAKIAKI
   aws_secret_access_key: secret123
-  # # If IAM profile use is enabled, remove aws_access_key_id and aws_secret_access_key
   use_iam_profile: no
-
 gitlab_rails_backup_upload_remote_directory: my.s3.bucket
 gitlab_rails_backup_multipart_chunk_size: 104857600
-
-##! **Turns on AWS Server-Side Encryption with Amazon S3-Managed Keys for
-##!   backups**
 gitlab_rails_backup_encryption: AES256
-##! The encryption key to use with AWS Server-Side Encryption.
-##! Setting this value will enable Server-Side Encryption with customer provided keys;
-##!   otherwise S3-managed keys are used.
 gitlab_rails_backup_encryption_key: "base64-encoded encryption key"
-
-##! **Turns on AWS Server-Side Encryption with Amazon SSE-KMS (AWS managed but customer-master key)
 gitlab_rails_backup_upload_storage_options:
  server_side_encryption: "aws:kms"
  server_side_encryption_kms_key_id: "arn:aws:kms:YOUR-KEY-ID-HERE"
-
-##! **Specifies Amazon S3 storage class to use for backups. Valid values
-##!   include 'STANDARD', 'STANDARD_IA', and 'REDUCED_REDUNDANCY'**
 gitlab_rails_backup_storage_class: STANDARD
-
-##! Skip parts of the backup. Comma separated.
-##! Docs: https://docs.gitlab.com/ee/raketasks/backup_restore.html#excluding-specific-directories-from-the-backup
 gitlab_rails_env:
   SKIP: db,uploads,repositories,builds,artifacts,lfs,registry,pages
 ```
