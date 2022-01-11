@@ -352,3 +352,201 @@
     quiet: yes
   when:
     - gitlab_rails_env is defined
+
+- name: test if gitlab_rails_smtp_enable is set correctly
+  ansible.builtin.assert:
+    that:
+      - gitlab_rails_smtp_enable is defined
+      - gitlab_rails_smtp_enable is boolean
+    quiet: yes
+
+- name: test if gitlab_rails_smtp_address is set correctly
+  ansible.builtin.assert:
+    that:
+      - gitlab_rails_smtp_address is defined
+      - gitlab_rails_smtp_address is string
+    quiet: yes
+  when:
+    - gitlab_rails_smtp_enable
+
+- name: test if gitlab_rails_smtp_port is set correctly
+  ansible.builtin.assert:
+    that:
+      - gitlab_rails_smtp_port is defined
+      - gitlab_rails_smtp_port is integer
+    quiet: yes
+  when:
+    - gitlab_rails_smtp_enable
+
+- name: test if gitlab_rails_smtp_user_name is set correctly
+  ansible.builtin.assert:
+    that:
+      - gitlab_rails_smtp_user_name is defined
+      - gitlab_rails_smtp_user_name is string
+    quiet: yes
+  when:
+    - gitlab_rails_smtp_enable
+
+- name: test if gitlab_rails_smtp_password is set correctly
+  ansible.builtin.assert:
+    that:
+      - gitlab_rails_smtp_password is defined
+      - gitlab_rails_smtp_password is string
+    quiet: yes
+  when:
+    - gitlab_rails_smtp_enable
+
+- name: test if gitlab_rails_smtp_domain is set correctly
+  ansible.builtin.assert:
+    that:
+      - gitlab_rails_smtp_domain is defined
+      - gitlab_rails_smtp_domain is string
+    quiet: yes
+  when:
+    - gitlab_rails_smtp_enable
+
+- name: test if gitlab_rails_smtp_authentication is set correctly
+  ansible.builtin.assert:
+    that:
+      - gitlab_rails_smtp_authentication is defined
+      - gitlab_rails_smtp_authentication is string
+    quiet: yes
+  when:
+    - gitlab_rails_smtp_enable
+
+- name: test if gitlab_rails_smtp_enable_starttls_auto is set correctly
+  ansible.builtin.assert:
+    that:
+      - gitlab_rails_smtp_enable_starttls_auto is defined
+      - gitlab_rails_smtp_enable_starttls_auto is boolean
+    quiet: yes
+  when:
+    - gitlab_rails_smtp_enable
+
+- name: test if gitlab_rails_smtp_tls is set correctly
+  ansible.builtin.assert:
+    that:
+      - gitlab_rails_smtp_tls is defined
+      - gitlab_rails_smtp_tls is boolean
+    quiet: yes
+  when:
+    - gitlab_rails_smtp_enable
+
+- name: test if gitlab_rails_smtp_pool is set correctly
+  ansible.builtin.assert:
+    that:
+      - gitlab_rails_smtp_pool is defined
+      - gitlab_rails_smtp_pool is boolean
+    quiet: yes
+  when:
+    - gitlab_rails_smtp_enable
+
+- name: test if gitlab_rails_smtp_openssl_verify_mode is set correctly
+  ansible.builtin.assert:
+    that:
+      - gitlab_rails_smtp_openssl_verify_mode is defined
+      - gitlab_rails_smtp_openssl_verify_mode is string
+      - gitlab_rails_smtp_openssl_verify_mode in [ "client_once", "fail_if_no_peer_cert", "none", "peer" ]
+    quiet: yes
+  when:
+    - gitlab_rails_smtp_enable
+
+- name: test if gitlab_rails_smtp_ca_path is set correctly
+  ansible.builtin.assert:
+    that:
+      - gitlab_rails_smtp_ca_path is defined
+      - gitlab_rails_smtp_ca_path is string
+    quiet: yes
+  when:
+    - gitlab_rails_smtp_enable
+
+- name: test if gitlab_rails_smtp_ca_file is set correctly
+  ansible.builtin.assert:
+    that:
+      - gitlab_rails_smtp_ca_file is defined
+      - gitlab_rails_smtp_ca_file is string
+    quiet: yes
+  when:
+    - gitlab_rails_smtp_enable
+
+- name: test if gitlab_rails_gitlab_email_enabled is set correctly
+  ansible.builtin.assert:
+    that:
+      - gitlab_rails_gitlab_email_enabled is defined
+      - gitlab_rails_gitlab_email_enabled is boolean
+    quiet: yes
+
+- name: test if gitlab_rails_gitlab_email_from is set correctly
+  ansible.builtin.assert:
+    that:
+      - gitlab_rails_gitlab_email_from is defined
+      - gitlab_rails_gitlab_email_from is string
+    quiet: yes
+  when:
+    - gitlab_rails_gitlab_email_enabled
+
+- name: test if gitlab_rails_gitlab_email_display_name is set correctly
+  ansible.builtin.assert:
+    that:
+      - gitlab_rails_gitlab_email_display_name is defined
+      - gitlab_rails_gitlab_email_display_name is string
+    quiet: yes
+  when:
+    - gitlab_rails_gitlab_email_enabled
+
+- name: test if gitlab_rails_gitlab_email_reply_to is set correctly
+  ansible.builtin.assert:
+    that:
+      - gitlab_rails_gitlab_email_reply_to is defined
+      - gitlab_rails_gitlab_email_reply_to is string
+    quiet: yes
+  when:
+    - gitlab_rails_gitlab_email_enabled
+
+- name: test if gitlab_rails_gitlab_email_subject_suffix is set correctly
+  ansible.builtin.assert:
+    that:
+      - gitlab_rails_gitlab_email_subject_suffix is defined
+      - gitlab_rails_gitlab_email_subject_suffix is string
+    quiet: yes
+  when:
+    - gitlab_rails_gitlab_email_enabled
+
+- name: test if gitlab_rails_gitlab_email_smime_enabled is set correctly
+  ansible.builtin.assert:
+    that:
+      - gitlab_rails_gitlab_email_smime_enabled is defined
+      - gitlab_rails_gitlab_email_smime_enabled is boolean
+    quiet: yes
+  when:
+    - gitlab_rails_gitlab_email_enabled
+
+- name: test if gitlab_rails_gitlab_email_smime_key_file is set correctly
+  ansible.builtin.assert:
+    that:
+      - gitlab_rails_gitlab_email_smime_key_file is defined
+      - gitlab_rails_gitlab_email_smime_key_file is string
+    quiet: yes
+  when:
+    - gitlab_rails_gitlab_email_enabled
+    - gitlab_rails_gitlab_email_smime_enabled
+
+- name: test if gitlab_rails_gitlab_email_smime_cert_file is set correctly
+  ansible.builtin.assert:
+    that:
+      - gitlab_rails_gitlab_email_smime_cert_file is defined
+      - gitlab_rails_gitlab_email_smime_cert_file is string
+    quiet: yes
+  when:
+    - gitlab_rails_gitlab_email_enabled
+    - gitlab_rails_gitlab_email_smime_enabled
+
+- name: test if gitlab_rails_gitlab_email_smime_ca_certs_file is set correctly
+  ansible.builtin.assert:
+    that:
+      - gitlab_rails_gitlab_email_smime_ca_certs_file is defined
+      - gitlab_rails_gitlab_email_smime_ca_certs_file is string
+    quiet: yes
+  when:
+    - gitlab_rails_gitlab_email_enabled
+    - gitlab_rails_gitlab_email_smime_enabled

@@ -123,3 +123,29 @@ gitlab_rails_backup_upload_storage_options:
 gitlab_rails_backup_storage_class: STANDARD
 gitlab_rails_env:
   SKIP: db,uploads,repositories,builds,artifacts,lfs,registry,pages
+
+# Settings for email server
+gitlab_rails_smtp_enable: yes
+gitlab_rails_smtp_address: smtp.server
+gitlab_rails_smtp_port: 465
+gitlab_rails_smtp_user_name: smtp user
+gitlab_rails_smtp_password: smtp password
+gitlab_rails_smtp_domain: example.com
+gitlab_rails_smtp_authentication: login
+gitlab_rails_smtp_enable_starttls_auto: yes
+gitlab_rails_smtp_tls: no
+gitlab_rails_smtp_pool: no
+gitlab_rails_smtp_openssl_verify_mode: none
+gitlab_rails_smtp_ca_path: etc/ssl/certs
+gitlab_rails_smtp_ca_file: /etc/ssl/certs/ca-certificates.crt
+
+# Settings for email.
+gitlab_rails_gitlab_email_enabled: yes
+gitlab_rails_gitlab_email_from: "example@example.com"
+gitlab_rails_gitlab_email_display_name: Example
+gitlab_rails_gitlab_email_reply_to: "noreply@example.com"
+gitlab_rails_gitlab_email_subject_suffix: ""
+gitlab_rails_gitlab_email_smime_enabled: no
+gitlab_rails_gitlab_email_smime_key_file: /etc/gitlab/ssl/gitlab_smime.key
+gitlab_rails_gitlab_email_smime_cert_file: /etc/gitlab/ssl/gitlab_smime.crt
+gitlab_rails_gitlab_email_smime_ca_certs_file: /etc/gitlab/ssl/gitlab_smime_cas.crt
