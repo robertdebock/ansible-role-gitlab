@@ -14,6 +14,13 @@
       - gitlab_external_url is string
     quiet: yes
 
+- name: test if gitlab_rails_time_zone is set correctly
+  ansible.builtin.assert:
+    that:
+      - gitlab_rails_time_zone is defined
+      - gitlab_rails_time_zone is string
+    quiet: yes
+
 - name: test if gitlab_distribution is set correctly
   ansible.builtin.assert:
     that:

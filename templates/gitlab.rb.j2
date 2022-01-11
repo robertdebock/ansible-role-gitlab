@@ -69,7 +69,7 @@ roles [{% for role in gitlab_roles %}'{{ role }}'{{ ", " if not loop.last }}{% e
 ################################################################################
 # gitlab_rails['gitlab_ssh_host'] = 'ssh.host_example.com'
 # gitlab_rails['gitlab_ssh_user'] = ''
-# gitlab_rails['time_zone'] = 'UTC'
+# gitlab_rails['time_zone'] = '{{ gitlab_rails_time_zone }}'
 
 ### Request duration
 ###! Tells the rails application how long it has to complete a request

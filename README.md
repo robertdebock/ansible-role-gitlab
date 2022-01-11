@@ -57,6 +57,9 @@ gitlab_release: 0
 # For "https", let's encrypt will be used.
 gitlab_external_url: "http://localhost"
 
+# Set the preferred timezone.
+gitlab_rails_time_zone: UTC
+
 # Choose to install "enterprise" or "community".
 gitlab_distribution: community
 
