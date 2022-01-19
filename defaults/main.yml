@@ -5,7 +5,7 @@
 # Please have a look at this repository for available package version:
 # community: https://packages.gitlab.com/gitlab/gitlab-ce
 # enterprise: https://packages.gitlab.com/gitlab/gitlab-ee
-gitlab_version: 14.6.1
+gitlab_version: 14.6.2
 
 # A part of the version is the "release", mostly "0". See repositories above.
 gitlab_release: 0
@@ -100,7 +100,7 @@ gitlab_rails_prevent_ldap_sign_in: no
 #     # admin_group: ""
 #     # sync_ssh_keys: no
 
-# Settings for backups.
+# Backup settings.
 gitlab_rails_manage_backup_path: yes
 gitlab_rails_backup_path: /var/opt/gitlab/backups
 gitlab_rails_backup_gitaly_backup_path: /opt/gitlab/embedded/bin/gitaly-backup
@@ -124,7 +124,7 @@ gitlab_rails_backup_storage_class: STANDARD
 gitlab_rails_env:
   SKIP: db,uploads,repositories,builds,artifacts,lfs,registry,pages
 
-# Settings for email server
+# SMTP settings.
 gitlab_rails_smtp_enable: yes
 gitlab_rails_smtp_address: smtp.server
 gitlab_rails_smtp_port: 465
@@ -139,7 +139,7 @@ gitlab_rails_smtp_openssl_verify_mode: none
 gitlab_rails_smtp_ca_path: etc/ssl/certs
 gitlab_rails_smtp_ca_file: /etc/ssl/certs/ca-certificates.crt
 
-# Settings for email.
+# E-mail settings.
 gitlab_rails_gitlab_email_enabled: yes
 gitlab_rails_gitlab_email_from: "example@example.com"
 gitlab_rails_gitlab_email_display_name: Example
@@ -149,3 +149,145 @@ gitlab_rails_gitlab_email_smime_enabled: no
 gitlab_rails_gitlab_email_smime_key_file: /etc/gitlab/ssl/gitlab_smime.key
 gitlab_rails_gitlab_email_smime_cert_file: /etc/gitlab/ssl/gitlab_smime.crt
 gitlab_rails_gitlab_email_smime_ca_certs_file: /etc/gitlab/ssl/gitlab_smime_cas.crt
+
+# User settings.
+# gitlab_rails['gitlab_default_can_create_group'] = true
+# gitlab_rails['gitlab_username_changing_enabled'] = true
+
+# Gravater settings.
+# gitlab_rails['gravatar_plain_url'] = 'http://www.gravatar.com/avatar/%{hash}?s=%{size}&d=identicon'
+# gitlab_rails['gravatar_ssl_url'] = 'https://secure.gravatar.com/avatar/%{hash}?s=%{size}&d=identicon'
+
+# Cron jobs settings, only when `gitlab_distribution` == `enterprise`.
+# gitlab_rails['geo_file_download_dispatch_worker_cron'] = "*/10 * * * *"
+# gitlab_rails['geo_repository_sync_worker_cron'] = "*/5 * * * *"
+# gitlab_rails['geo_secondary_registry_consistency_worker'] = "* * * * *"
+# gitlab_rails['geo_secondary_usage_data_cron_worker'] = "0 0 * * 0"
+# gitlab_rails['geo_prune_event_log_worker_cron'] = "*/5 * * * *"
+# gitlab_rails['geo_repository_verification_primary_batch_worker_cron'] = "*/5 * * * *"
+# gitlab_rails['geo_repository_verification_secondary_scheduler_worker_cron'] = "*/5 * * * *"
+# gitlab_rails['ldap_sync_worker_cron'] = "30 1 * * *"
+# gitlab_rails['ldap_group_sync_worker_cron'] = "0 * * * *"
+# gitlab_rails['historical_data_worker_cron'] = "0 12 * * *"
+# gitlab_rails['pseudonymizer_worker_cron'] = "0 23 * * *"
+# gitlab_rails['elastic_index_bulk_cron'] = "*/1 * * * *"
+# gitlab_rails['analytics_devops_adoption_create_all_snapshots_worker_cron'] = "0 4 * * 0"
+
+# Incoming email settings.
+# gitlab_rails['incoming_email_address'] = "gitlab-incoming+%{key}@gmail.com"
+# gitlab_rails['incoming_email_email'] = "gitlab-incoming@gmail.com"
+# gitlab_rails['incoming_email_password'] = "[REDACTED]"
+# gitlab_rails['incoming_email_host'] = "imap.gmail.com"
+# gitlab_rails['incoming_email_port'] = 993
+# gitlab_rails['incoming_email_ssl'] = true
+# gitlab_rails['incoming_email_start_tls'] = false
+# gitlab_rails['incoming_email_mailbox_name'] = "inbox"
+# gitlab_rails['incoming_email_idle_timeout'] = 60
+# gitlab_rails['incoming_email_log_file'] = "/var/log/gitlab/mailroom/mail_room_json.log"
+# gitlab_rails['incoming_email_expunge_deleted'] = false
+# gitlab_rails['incoming_email_inbox_method'] = 'microsoft_graph'
+# gitlab_rails['incoming_email_inbox_options'] = {
+#    'tenant_id': 'YOUR-TENANT-ID',
+#    'client_id': 'YOUR-CLIENT-ID',
+#    'client_secret': 'YOUR-CLIENT-SECRET',
+#    'poll_interval': 60  # Optional
+# }
+
+# Settings for artifacts.
+# gitlab_rails['artifacts_enabled'] = true
+# gitlab_rails['artifacts_path'] = "/var/opt/gitlab/gitlab-rails/shared/artifacts"
+# gitlab_rails['artifacts_object_store_enabled'] = false
+# gitlab_rails['artifacts_object_store_direct_upload'] = false
+# gitlab_rails['artifacts_object_store_background_upload'] = true
+# gitlab_rails['artifacts_object_store_proxy_download'] = false
+# gitlab_rails['artifacts_object_store_remote_directory'] = "artifacts"
+# gitlab_rails['artifacts_object_store_connection'] = {
+#   'provider' => 'AWS',
+#   'region' => 'eu-west-1',
+#   'aws_access_key_id' => 'AWS_ACCESS_KEY_ID',
+#   'aws_secret_access_key' => 'AWS_SECRET_ACCESS_KEY',
+#   # # The below options configure an S3 compatible host instead of AWS
+#   # 'aws_signature_version' => 4, # For creation of signed URLs. Set to 2 if provider does not support v4.
+#   # 'endpoint' => 'https://s3.amazonaws.com', # default: nil - Useful for S3 compliant services such as DigitalOcean Spaces
+#   # 'host' => 's3.amazonaws.com',
+#   # 'path_style' => false # Use 'host/bucket_name/object' instead of 'bucket_name.host/object'
+# }
+
+# Settings for OmniAuth
+# gitlab_rails['omniauth_enabled'] = nil
+# gitlab_rails['omniauth_allow_single_sign_on'] = ['saml']
+# gitlab_rails['omniauth_sync_email_from_provider'] = 'saml'
+# gitlab_rails['omniauth_sync_profile_from_provider'] = ['saml']
+# gitlab_rails['omniauth_sync_profile_attributes'] = ['email']
+# gitlab_rails['omniauth_auto_sign_in_with_provider'] = 'saml'
+# gitlab_rails['omniauth_block_auto_created_users'] = true
+# gitlab_rails['omniauth_auto_link_ldap_user'] = false
+# gitlab_rails['omniauth_auto_link_saml_user'] = false
+# gitlab_rails['omniauth_auto_link_user'] = ['saml']
+# gitlab_rails['omniauth_external_providers'] = ['twitter', 'google_oauth2']
+# gitlab_rails['omniauth_allow_bypass_two_factor'] = ['google_oauth2']
+# gitlab_rails['omniauth_providers'] = [
+#   {
+#     "name" => "google_oauth2",
+#     "app_id" => "YOUR APP ID",
+#     "app_secret" => "YOUR APP SECRET",
+#     "args" => { "access_type" => "offline", "approval_prompt" => "" }
+#   }
+# ]
+# gitlab_rails['omniauth_cas3_session_duration'] = 28800
+# gitlab_rails['omniauth_saml_message_max_byte_size'] = 250000
+
+# Settings for git storage
+# git_data_dirs({
+#   "default" => {
+#     "path" => "/mnt/nfs-01/git-data"
+#    }
+# })
+
+# Settings for uploads
+# gitlab_rails['uploads_directory'] = "/var/opt/gitlab/gitlab-rails/uploads"
+# gitlab_rails['uploads_storage_path'] = "/opt/gitlab/embedded/service/gitlab-rails/public"
+# gitlab_rails['uploads_base_dir'] = "uploads/-/system"
+# gitlab_rails['uploads_object_store_enabled'] = false
+# gitlab_rails['uploads_object_store_direct_upload'] = false
+# gitlab_rails['uploads_object_store_background_upload'] = true
+# gitlab_rails['uploads_object_store_proxy_download'] = false
+# gitlab_rails['uploads_object_store_remote_directory'] = "uploads"
+# gitlab_rails['uploads_object_store_connection'] = {
+#   'provider' => 'AWS',
+#   'region' => 'eu-west-1',
+#   'aws_access_key_id' => 'AWS_ACCESS_KEY_ID',
+#   'aws_secret_access_key' => 'AWS_SECRET_ACCESS_KEY',
+#   # # The below options configure an S3 compatible host instead of AWS
+#   # 'host' => 's3.amazonaws.com',
+#   # 'aws_signature_version' => 4, # For creation of signed URLs. Set to 2 if provider does not support v4.
+#   # 'endpoint' => 'https://s3.amazonaws.com', # default: nil - Useful for S3 compliant services such as DigitalOcean Spaces
+#   # 'path_style' => false # Use 'host/bucket_name/object' instead of 'bucket_name.host/object'
+# }
+
+# Database settings
+# If you are using the internal database, set `gitlab_rails_db_enabled` to "no".
+gitlab_rails_db_enabled: no
+gitlab_rails_db_adapter: postgresql
+gitlab_rails_db_encoding: unicode
+# gitlab_rails_db_collation:
+gitlab_rails_db_database: gitlabhq_production
+gitlab_rails_db_username: gitlab
+gitlab_rails_db_password: "Som3P@s5w0rd"
+gitlab_rails_db_host: localhost
+gitlab_rails_db_port: 5432
+# gitlab_rails_db_socket:
+# gitlab_rails_db_sslmode:
+gitlab_rails_db_sslcompression: 0
+# gitlab_rails_db_sslrootcert:
+# gitlab_rails_db_sslcert:
+# gitlab_rails_db_sslkey:
+gitlab_rails_db_prepared_statements: no
+gitlab_rails_db_statements_limit: 1000
+# gitlab_rails_db_connect_timeout:
+# gitlab_rails_db_keepalives:
+# gitlab_rails_db_keepalives_idle:
+# gitlab_rails_db_keepalives_interval:
+# gitlab_rails_db_keepalives_count:
+# gitlab_rails_db_tcp_user_timeout:
+# gitlab_rails_db_application_name:

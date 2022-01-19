@@ -714,30 +714,73 @@ gitlab_rails['env'] = {
 ### GitLab database settings
 ###! Docs: https://docs.gitlab.com/omnibus/settings/database.html
 ###! **Only needed if you use an external database.**
-# gitlab_rails['db_adapter'] = "postgresql"
-# gitlab_rails['db_encoding'] = "unicode"
-# gitlab_rails['db_collation'] = nil
-# gitlab_rails['db_database'] = "gitlabhq_production"
-# gitlab_rails['db_username'] = "gitlab"
-# gitlab_rails['db_password'] = nil
-# gitlab_rails['db_host'] = nil
-# gitlab_rails['db_port'] = 5432
-# gitlab_rails['db_socket'] = nil
-# gitlab_rails['db_sslmode'] = nil
-# gitlab_rails['db_sslcompression'] = 0
-# gitlab_rails['db_sslrootcert'] = nil
-# gitlab_rails['db_sslcert'] = nil
-# gitlab_rails['db_sslkey'] = nil
-# gitlab_rails['db_prepared_statements'] = false
-# gitlab_rails['db_statements_limit'] = 1000
-# gitlab_rails['db_connect_timeout'] = nil
-# gitlab_rails['db_keepalives'] = nil
-# gitlab_rails['db_keepalives_idle'] = nil
-# gitlab_rails['db_keepalives_interval'] = nil
-# gitlab_rails['db_keepalives_count'] = nil
-# gitlab_rails['db_tcp_user_timeout'] = nil
-# gitlab_rails['db_application_name'] = nil
-
+{% if gitlab_rails_db_enabled %}
+gitlab_rails['db_adapter'] = "{{ gitlab_rails_db_adapter }}"
+gitlab_rails['db_encoding'] = "{{ gitlab_rails_db_encoding }}"
+{% if gitlab_rails_db_collation is defined %}
+gitlab_rails['db_collation'] = {{ gitlab_rails_db_collation }}
+{% endif %}
+{% if XXX is defined %}
+gitlab_rails['db_database'] = "{{ gitlab_rails_db_database }}"
+{% endif %}
+{% if gitlab_rails_db_username is defined %}
+gitlab_rails['db_username'] = "{{ gitlab_rails_db_username }}"
+{% endif %}
+{% if gitlab_rails_db_password is defined %}
+gitlab_rails['db_password'] = "{{ gitlab_rails_db_password }}"
+{% endif %}
+{% if gitlab_rails_db_host is defined %}
+gitlab_rails['db_host'] = "{{ gitlab_rails_db_host }}"
+{% endif %}
+{% if gitlab_rails_db_port is defined %}
+gitlab_rails['db_port'] = {{ gitlab_rails_db_port }}
+{% endif %}
+{% if gitlab_rails_db_socket is defined %}
+gitlab_rails['db_socket'] = "{{ gitlab_rails_db_socket }}"
+{% endif %}
+{% if gitlab_rails_db_sslmode is defined %}
+gitlab_rails['db_sslmode'] = {{ gitlab_rails_db_sslmode }}
+{% endif %}
+{% if gitlab_rails_db_sslcompression is defined %}
+gitlab_rails['db_sslcompression'] = {{ gitlab_rails_db_sslcompression }}
+{% endif %}
+{% if gitlab_rails_db_sslrootcert is defined %}
+gitlab_rails['db_sslrootcert'] = "{{ gitlab_rails_db_sslrootcert }}"
+{% endif %}
+{% if gitlab_rails_db_sslcert is defined %}
+gitlab_rails['db_sslcert'] = "{{ gitlab_rails_db_sslcert }}"
+{% endif %}
+{% if gitlab_rails_db_sslkey is defined %}
+gitlab_rails['db_sslkey'] = "{{ gitlab_rails_db_sslkey }}"
+{% endif %}
+{% if gitlab_rails_db_prepared_statements is defined %}
+gitlab_rails['db_prepared_statements'] = {{ gitlab_rails_db_prepared_statements | string | lower }}
+{% endif %}
+{% if gitlab_rails_db_statements_limit is defined %}
+gitlab_rails['db_statements_limit'] = {{ gitlab_rails_db_statements_limit }}
+{% endif %}
+{% if gitlab_rails_db_connect_timeout is defined %}
+gitlab_rails['db_connect_timeout'] = {{ gitlab_rails_db_connect_timeout }}
+{% endif %}
+{% if gitlab_rails_db_keepalives is defined %}
+gitlab_rails['db_keepalives'] = {{ gitlab_rails_db_keepalives }}
+{% endif %}
+{% if gitlab_rails_db_keepalives_idle is defined %}
+gitlab_rails['db_keepalives_idle'] = {{ gitlab_rails_db_keepalives_idle }}
+{% endif %}
+{% if gitlab_rails_db_keepalives_interval is defined %}
+gitlab_rails['db_keepalives_interval'] = {{ gitlab_rails_db_keepalives_interval }}
+{% endif %}
+{% if gitlab_rails_db_keepalives_count is defined %}
+gitlab_rails['db_keepalives_count'] = {{ gitlab_rails_db_keepalives_count }}
+{% endif %}
+{% if gitlab_rails_db_tcp_user_timeout is defined %}
+gitlab_rails['db_tcp_user_timeout'] = {{ gitlab_rails_db_tcp_user_timeout }}
+{% endif %}
+{% if gitlab_rails_db_application_name is defined %}
+gitlab_rails['db_application_name'] = "{{ gitlab_rails_db_application_name }}"
+{% endif %}
+{% endif %}
 
 ### GitLab Redis settings
 ###! Connect to your own Redis instance

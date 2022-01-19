@@ -550,3 +550,187 @@
   when:
     - gitlab_rails_gitlab_email_enabled
     - gitlab_rails_gitlab_email_smime_enabled
+
+- name: test if gitlab_rails_db_adapter is set correctly
+  ansible.builtin.assert:
+    that:
+      - gitlab_rails_db_adapter is defined
+      - gitlab_rails_db_adapter is string
+      - gitlab_rails_db_adapter == "postgresql"
+    quiet: yes
+
+- name: test if gitlab_rails_db_encoding is set correctly
+  ansible.builtin.assert:
+    that:
+      - gitlab_rails_db_encoding is defined
+      - gitlab_rails_db_encoding is string
+      - gitlab_rails_db_encoding in [ "unicode", "utf8" ]
+    quiet: yes
+
+- name: test if gitlab_rails_db_collation is set correctly
+  ansible.builtin.assert:
+    that:
+      - gitlab_rails_db_collation is boolean
+    quiet: yes
+  when:
+    - gitlab_rails_db_collation is defined
+
+- name: test if gitlab_rails_db_database is set correctly
+  ansible.builtin.assert:
+    that:
+      - gitlab_rails_db_database is defined
+      - gitlab_rails_db_database is string
+    quiet: yes
+
+- name: test if gitlab_rails_db_username is set correctly
+  ansible.builtin.assert:
+    that:
+      - gitlab_rails_db_username is defined
+      - gitlab_rails_db_username is string
+    quiet: yes
+
+- name: test if gitlab_rails_db_password is set correctly
+  ansible.builtin.assert:
+    that:
+      - gitlab_rails_db_password is defined
+      - gitlab_rails_db_password is string
+    quiet: yes
+
+- name: test if gitlab_rails_db_host is set correctly
+  ansible.builtin.assert:
+    that:
+      - gitlab_rails_db_host is defined
+      - gitlab_rails_db_host is string
+    quiet: yes
+  when:
+    - gitlab_rails_db_socket is not defined
+
+- name: test if gitlab_rails_db_port is set correctly
+  ansible.builtin.assert:
+    that:
+      - gitlab_rails_db_port is defined
+      - gitlab_rails_db_port is integer
+    quiet: yes
+
+- name: test if gitlab_rails_db_socket is set correctly
+  ansible.builtin.assert:
+    that:
+      - gitlab_rails_db_socket is defined
+      - gitlab_rails_db_socket is string
+    quiet: yes
+  when:
+    - gitlab_rails_db_host is not defined
+
+- name: test if gitlab_rails_db_sslmode is set correctly
+  ansible.builtin.assert:
+    that:
+      - gitlab_rails_db_sslmode is string
+      - gitlab_rails_db_sslmode in [ "disable", "enable" ]
+    quiet: yes
+  when:
+    - gitlab_rails_db_sslmode is defined
+
+- name: test if gitlab_rails_db_sslcompression is set correctly
+  ansible.builtin.assert:
+    that:
+      - gitlab_rails_db_sslcompression is integer
+      - gitlab_rails_db_sslcompression in [ 0, 1 ]
+    quiet: yes
+  when:
+    - gitlab_rails_db_sslcompression is defined
+
+- name: test if gitlab_rails_db_sslrootcert is set correctly
+  ansible.builtin.assert:
+    that:
+      - gitlab_rails_db_sslrootcert is string
+    quiet: yes
+  when:
+    - gitlab_rails_db_sslrootcert is defined
+
+- name: test if gitlab_rails_db_sslcert is set correctly
+  ansible.builtin.assert:
+    that:
+      - gitlab_rails_db_sslcert is string
+    quiet: yes
+  when:
+    - gitlab_rails_db_sslcert is defined
+
+- name: test if gitlab_rails_db_sslkey is set correctly
+  ansible.builtin.assert:
+    that:
+      - gitlab_rails_db_sslkey is string
+    quiet: yes
+  when:
+    - gitlab_rails_db_sslkey is defined
+
+- name: test if gitlab_rails_db_prepared_statements is set correctly
+  ansible.builtin.assert:
+    that:
+      - gitlab_rails_db_prepared_statements is boolean
+    quiet: yes
+  when:
+    - gitlab_rails_db_prepared_statements is defined
+
+- name: test if gitlab_rails_db_statements_limit is set correctly
+  ansible.builtin.assert:
+    that:
+      - gitlab_rails_db_statements_limit is integer
+    quiet: yes
+  when:
+    - gitlab_rails_db_statements_limit is defined
+
+- name: test if gitlab_rails_db_connect_timeout is set correctly
+  ansible.builtin.assert:
+    that:
+      - gitlab_rails_db_connect_timeout is integer
+    quiet: yes
+  when:
+    - gitlab_rails_db_connect_timeout is defined
+
+- name: test if gitlab_rails_db_keepalives is set correctly
+  ansible.builtin.assert:
+    that:
+      - gitlab_rails_db_keepalives is integer
+    quiet: yes
+  when:
+    - gitlab_rails_db_keepalives is defined
+
+- name: test if gitlab_rails_db_keepalives_idle is set correctly
+  ansible.builtin.assert:
+    that:
+      - gitlab_rails_db_keepalives_idle is integer
+    quiet: yes
+  when:
+    - gitlab_rails_db_keepalives_idle is defined
+
+- name: test if gitlab_rails_db_keepalives_interval is set correctly
+  ansible.builtin.assert:
+    that:
+      - gitlab_rails_db_keepalives_interval is integer
+    quiet: yes
+  when:
+    - gitlab_rails_db_keepalives_interval is defined
+
+- name: test if gitlab_rails_db_keepalives_count is set correctly
+  ansible.builtin.assert:
+    that:
+      - gitlab_rails_db_keepalives_count is integer
+    quiet: yes
+  when:
+    - gitlab_rails_db_keepalives_count is defined
+
+- name: test if gitlab_rails_db_tcp_user_timeout is set correctly
+  ansible.builtin.assert:
+    that:
+      - gitlab_rails_db_tcp_user_timeout is number
+    quiet: yes
+  when:
+    - gitlab_rails_db_tcp_user_timeout is defined
+
+- name: test if gitlab_rails_db_application_name is set correctly
+  ansible.builtin.assert:
+    that:
+      - gitlab_rails_db_application_name is string
+    quiet: yes
+  when:
+    - gitlab_rails_db_application_name is defined
