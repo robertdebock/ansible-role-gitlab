@@ -150,6 +150,8 @@ gitlab_rails_backup_gitaly_backup_path: /opt/gitlab/embedded/bin/gitaly-backup
 gitlab_rails_backup_archive_permissions: "0644"
 gitlab_rails_backup_pg_schema: public
 gitlab_rails_backup_keep_time: 604800
+
+# You can save backups on AWS S3.
 # gitlab_rails_backup_upload_connection:
 #   provider: AWS
 #   region: eu-west-1
@@ -164,8 +166,10 @@ gitlab_rails_backup_keep_time: 604800
 #   server_side_encryption: "aws:kms"
 #   server_side_encryption_kms_key_id: "arn:aws:kms:YOUR-KEY-ID-HERE"
 # gitlab_rails_backup_storage_class: STANDARD
-gitlab_rails_env:
-  SKIP: db,uploads,repositories,builds,artifacts,lfs,registry,pages
+
+# You can skip parts in a backup.
+# gitlab_rails_env:
+#   SKIP: db,uploads,repositories,builds,artifacts,lfs,registry,pages
 
 # SMTP settings.
 gitlab_rails_smtp_enable: yes
