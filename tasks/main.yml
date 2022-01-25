@@ -55,7 +55,7 @@
 - name: configure ssl
   block:
     - name: make ssl directories
-      file:
+      ansible.builtin.file:
         path: /etc/gitlab/ssl
         state: directory
         recurse: yes
@@ -64,7 +64,7 @@
         mode: "0750"
 
     - name: place ssl certificate
-      copy:
+      ansible.builtin.copy:
         src: "{{ gitlab_ssl_crt }}"
         dest: /etc/gitlab/ssl/{{ gitlab_external_url | urlsplit('hostname') }}.crt
         owner: root
@@ -72,7 +72,7 @@
         mode: "0644"
 
     - name: place ssl key
-      copy:
+      ansible.builtin.copy:
         src: "{{ gitlab_ssl_key }}"
         dest: /etc/gitlab/ssl/{{ gitlab_external_url | urlsplit('hostname') }}.key
         owner: root
