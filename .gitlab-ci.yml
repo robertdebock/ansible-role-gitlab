@@ -1,5 +1,5 @@
 ---
-image: "robertdebock/github-action-molecule"
+image: "robertdebock/github-action-molecule:4.0.3"
 
 services:
   - docker:dind
