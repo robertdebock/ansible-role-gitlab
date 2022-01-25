@@ -2406,19 +2406,22 @@ gitlab_rails['db_application_name'] = "{{ gitlab_rails_db_application_name }}"
 ################################################################################
 # Let's Encrypt integration
 ################################################################################
-# letsencrypt['enable'] = nil
-# letsencrypt['contact_emails'] = [] # This should be an array of email addresses to add as contacts
-# letsencrypt['group'] = 'root'
-# letsencrypt['key_size'] = 2048
-# letsencrypt['owner'] = 'root'
-# letsencrypt['wwwroot'] = '/var/opt/gitlab/nginx/www'
+{% if gitlab_letsencrypt %}
+letsencrypt['enable'] = {{ gitlab_letsencrypt | string | lower }}
+letsencrypt['contact_emails'] = [ {% for email in gitlab_letsencrypt_contact_emails %}'{{ email }}'{% if not loop.last %}, {% endif %} {% endfor %} ]
+letsencrypt['group'] = '{{ gitlab_letsencrypt_group }}'
+letsencrypt['key_size'] = {{ gitlab_letsencrypt_key_size }}
+letsencrypt['owner'] = '{{ gitlab_letsencrypt_owner }}'
+letsencrypt['wwwroot'] = '{{ gitlab_letsencrypt_wwwroot }}'
 # See http://docs.gitlab.com/omnibus/settings/ssl.html#automatic-renewal for more on these sesttings
-# letsencrypt['auto_renew'] = true
-# letsencrypt['auto_renew_hour'] = 0
-# letsencrypt['auto_renew_minute'] = nil # Should be a number or cron expression, if specified.
-# letsencrypt['auto_renew_day_of_month'] = "*/4"
-# letsencrypt['auto_renew_log_directory'] = '/var/log/gitlab/lets-encrypt'
-
+letsencrypt['auto_renew'] = {{ gitlab_letsencrypt_auto_renew | string | lower }}
+letsencrypt['auto_renew_hour'] = {{ gitlab_letsencrypt_auto_renew_hour }}
+letsencrypt['auto_renew_minute'] = {{ gitlab_letsencrypt_auto_renew_minute }}
+letsencrypt['auto_renew_day_of_month'] = "{{ gitlab_letsencrypt_auto_renew_day_of_month }}"
+letsencrypt['auto_renew_log_directory'] = '{{ gitlab_letsencrypy_auto_renew_log_directory }}'
+{% else %}
+letsencrypt['enable'] = nil
+{% endif %}
 ##! Turn off automatic init system detection. To skip init detection in
 ##! non-docker containers. Recommended not to change.
 # package['detect_init'] = true

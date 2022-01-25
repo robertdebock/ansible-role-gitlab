@@ -373,7 +373,7 @@
   ansible.builtin.assert:
     that:
       - gitlab_rails_smtp_port is defined
-      - gitlab_rails_smtp_port is integer
+      - gitlab_rails_smtp_port is number
     quiet: yes
   when:
     - gitlab_rails_smtp_enable
@@ -609,7 +609,7 @@
   ansible.builtin.assert:
     that:
       - gitlab_rails_db_port is defined
-      - gitlab_rails_db_port is integer
+      - gitlab_rails_db_port is number
     quiet: yes
 
 - name: test if gitlab_rails_db_socket is set correctly
@@ -633,7 +633,7 @@
 - name: test if gitlab_rails_db_sslcompression is set correctly
   ansible.builtin.assert:
     that:
-      - gitlab_rails_db_sslcompression is integer
+      - gitlab_rails_db_sslcompression is number
       - gitlab_rails_db_sslcompression in [ 0, 1 ]
     quiet: yes
   when:
@@ -674,7 +674,7 @@
 - name: test if gitlab_rails_db_statements_limit is set correctly
   ansible.builtin.assert:
     that:
-      - gitlab_rails_db_statements_limit is integer
+      - gitlab_rails_db_statements_limit is number
     quiet: yes
   when:
     - gitlab_rails_db_statements_limit is defined
@@ -682,7 +682,7 @@
 - name: test if gitlab_rails_db_connect_timeout is set correctly
   ansible.builtin.assert:
     that:
-      - gitlab_rails_db_connect_timeout is integer
+      - gitlab_rails_db_connect_timeout is number
     quiet: yes
   when:
     - gitlab_rails_db_connect_timeout is defined
@@ -690,7 +690,7 @@
 - name: test if gitlab_rails_db_keepalives is set correctly
   ansible.builtin.assert:
     that:
-      - gitlab_rails_db_keepalives is integer
+      - gitlab_rails_db_keepalives is number
     quiet: yes
   when:
     - gitlab_rails_db_keepalives is defined
@@ -698,7 +698,7 @@
 - name: test if gitlab_rails_db_keepalives_idle is set correctly
   ansible.builtin.assert:
     that:
-      - gitlab_rails_db_keepalives_idle is integer
+      - gitlab_rails_db_keepalives_idle is number
     quiet: yes
   when:
     - gitlab_rails_db_keepalives_idle is defined
@@ -706,7 +706,7 @@
 - name: test if gitlab_rails_db_keepalives_interval is set correctly
   ansible.builtin.assert:
     that:
-      - gitlab_rails_db_keepalives_interval is integer
+      - gitlab_rails_db_keepalives_interval is number
     quiet: yes
   when:
     - gitlab_rails_db_keepalives_interval is defined
@@ -714,7 +714,7 @@
 - name: test if gitlab_rails_db_keepalives_count is set correctly
   ansible.builtin.assert:
     that:
-      - gitlab_rails_db_keepalives_count is integer
+      - gitlab_rails_db_keepalives_count is number
     quiet: yes
   when:
     - gitlab_rails_db_keepalives_count is defined
@@ -734,3 +734,140 @@
     quiet: yes
   when:
     - gitlab_rails_db_application_name is defined
+
+- name: test if gitlab_letsencrypt is set correctly
+  ansible.builtin.assert:
+    that:
+      - gitlab_letsencrypt is boolean
+    quiet: yes
+  when:
+    - gitlab_letsencrypt is defined
+
+- name: test if gitlab_letsencrypt no is set correctly
+  ansible.builtin.assert:
+    that:
+      - gitlab_ssl_key is defined
+      - gitlab_ssl_key is string
+      - gitlab_ssl_crt is defined
+      - gitlab_ssl_crt is string
+    quiet: yes
+  when:
+    - gitlab_letsencrypt is defined
+    - not gitlab_letsencrypt
+    - '"https" in gitlab_external_url'
+
+- name: test if gitlab_letsencrypt_contact_emails is set correctly
+  ansible.builtin.assert:
+    that:
+      - gitlab_letsencrypt_contact_emails is defined
+      - gitlab_letsencrypt_contact_emails is iterable
+    quiet: yes
+  when:
+    - gitlab_letsencrypt is defined
+    - gitlab_letsencrypt
+
+- name: test if gitlab_letsencrypt_group is set correctly
+  ansible.builtin.assert:
+    that:
+      - gitlab_letsencrypt_group is defined
+      - gitlab_letsencrypt_group is string
+    quiet: yes
+  when:
+    - gitlab_letsencrypt is defined
+    - gitlab_letsencrypt
+
+- name: test if gitlab_letsencrypt_key_size is set correctly
+  ansible.builtin.assert:
+    that:
+      - gitlab_letsencrypt_key_size is defined
+      - gitlab_letsencrypt_key_size is number
+    quiet: yes
+  when:
+    - gitlab_letsencrypt is defined
+    - gitlab_letsencrypt
+
+- name: test if gitlab_letsencrypt_owner is set correctly
+  ansible.builtin.assert:
+    that:
+      - gitlab_letsencrypt_owner is defined
+      - gitlab_letsencrypt_owner is string
+    quiet: yes
+  when:
+    - gitlab_letsencrypt is defined
+    - gitlab_letsencrypt
+
+- name: test if gitlab_letsencrypt_wwwroot is set correctly
+  ansible.builtin.assert:
+    that:
+      - gitlab_letsencrypt_wwwroot is defined
+      - gitlab_letsencrypt_wwwroot is string
+    quiet: yes
+  when:
+    - gitlab_letsencrypt is defined
+    - gitlab_letsencrypt
+
+- name: test if gitlab_letsencrypt_auto_renew is set correctly
+  ansible.builtin.assert:
+    that:
+      - gitlab_letsencrypt_auto_renew is boolean
+    quiet: yes
+  when:
+    - gitlab_letsencrypt is defined
+    - gitlab_letsencrypt
+    - gitlab_letsencrypt_auto_renew is defined
+
+- name: test if gitlab_letsencrypt_auto_renew_hour is set correctly
+  ansible.builtin.assert:
+    that:
+      - gitlab_letsencrypt_auto_renew_hour is defined
+      - (gitlab_letsencrypt_auto_renew_hour is number and
+         gitlab_letsencrypt_auto_renew_hour >= 0 and
+         gitlab_letsencrypt_auto_renew_hour <= 24) or
+        (gitlab_letsencrypt_auto_renew_hour is string and
+         gitlab_letsencrypt_auto_renew_hour == "nil")
+    quiet: yes
+  when:
+    - gitlab_letsencrypt is defined
+    - gitlab_letsencrypt
+    - gitlab_letsencrypt_auto_renew
+
+- name: test if gitlab_letsencrypt_auto_renew_minute is set correctly
+  ansible.builtin.assert:
+    that:
+      - gitlab_letsencrypt_auto_renew_minute is defined
+      - (gitlab_letsencrypt_auto_renew_minute is number and
+         gitlab_letsencrypt_auto_renew_minute >= 0 and
+         gitlab_letsencrypt_auto_renew_minute <= 59) or
+        (gitlab_letsencrypt_auto_renew_minute is string and
+         gitlab_letsencrypt_auto_renew_minute == "nil")
+    quiet: yes
+  when:
+    - gitlab_letsencrypt is defined
+    - gitlab_letsencrypt
+    - gitlab_letsencrypt_auto_renew
+
+- name: test if gitlab_letsencrypt_auto_renew_day_of_month is set correctly
+  ansible.builtin.assert:
+    that:
+      - gitlab_letsencrypt_auto_renew_day_of_month is defined
+      - (gitlab_letsencrypt_auto_renew_day_of_month is number and
+         gitlab_letsencrypt_auto_renew_day_of_month >= 0 and
+         gitlab_letsencrypt_auto_renew_day_of_month <= 31) or
+        (gitlab_letsencrypt_auto_renew_day_of_month is string and
+         gitlab_letsencrypt_auto_renew_day_of_month == "nil")
+    quiet: yes
+  when:
+    - gitlab_letsencrypt is defined
+    - gitlab_letsencrypt
+    - gitlab_letsencrypt_auto_renew
+
+- name: test if gitlab_letsencrypy_auto_renew_log_directory is set correctly
+  ansible.builtin.assert:
+    that:
+      - gitlab_letsencrypy_auto_renew_log_directory is defined
+      - gitlab_letsencrypy_auto_renew_log_directory is string
+    quiet: yes
+  when:
+    - gitlab_letsencrypt is defined
+    - gitlab_letsencrypt
+    - gitlab_letsencrypt_auto_renew

@@ -51,7 +51,7 @@ gitlab_default_projects_features_snippets: yes
 gitlab_default_projects_features_builds: yes
 gitlab_default_projects_features_container_registry: yes
 
-# LDAP can be configured with the below variables.
+# LDAP settings.
 gitlab_rails_ldap_enabled: no
 gitlab_rails_prevent_ldap_sign_in: no
 # When `gitlab_rails_ldap_enabled` is set to `yes`, you need to define (at
@@ -295,3 +295,26 @@ gitlab_rails_db_statements_limit: 1000
 # gitlab_rails_db_keepalives_count:
 # gitlab_rails_db_tcp_user_timeout:
 # gitlab_rails_db_application_name:
+
+# SSL settings
+# # If you do not want to use SSL, use this structure.
+gitlab_letsencrypt: no
+# gitlab_external_url: "http://gitlab.example.com" # (No `https` in the value.)
+# # If you bring your own certificates, use this structure.
+# gitlab_letsencrypt: no
+# gitlab_ssl_directory: /etc/gitlab/ssl
+# gitlab_ssl_key: some_file.key
+# gitlab_ssl_crt: some_file.crt
+# # If you'd like to use letsencrypt, use this scructure.
+# gitlab_letsencrypt: yes
+# gitlab_letsencrypt_contact_emails:
+#   - robert@meinit.nl
+# gitlab_letsencrypt_group: root
+# gitlab_letsencrypt_key_size: 2048
+# gitlab_letsencrypt_owner: root
+# gitlab_letsencrypt_wwwroot: /var/opt/gitlab/nginx/www
+# gitlab_letsencrypt_auto_renew: yes
+# gitlab_letsencrypt_auto_renew_hour: 0
+# gitlab_letsencrypt_auto_renew_minute: nil
+# gitlab_letsencrypt_auto_renew_day_of_month: nil
+# gitlab_letsencrypy_auto_renew_log_directory: /var/log/gitlab/lets-encrypt
