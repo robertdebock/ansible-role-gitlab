@@ -10,15 +10,22 @@ gitlab_version: 14.6.2
 # A part of the version is the "release", mostly "0". See repositories above.
 gitlab_release: 0
 
+# Choose to install "enterprise" or "community".
+gitlab_distribution: community
+
+# Instead of defining the variables below, you can also simply copy a configuration file.
+# Place this file into the `files` directory that hosts the playbooks.
+# To configure GitLab using variables, comment this line
+# gitlab_configuration_file: gitlab.rb
+
+# The configuration below is only required when **not** placing a configuration file.
+
 # The URL where the gitlab installation will be made available on.
 # For "https", let's encrypt will be used.
 gitlab_external_url: "http://localhost"
 
 # Set the preferred timezone.
 gitlab_rails_time_zone: UTC
-
-# Choose to install "enterprise" or "community".
-gitlab_distribution: community
 
 # The syntax of `gitlab.rb` will be tested before applying this role. The
 # package `ruby` is required for that. By default `ruby` is installed and

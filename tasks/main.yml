@@ -83,7 +83,7 @@
     - not gitlab_letsencrypt
     - '"https" in gitlab_external_url'
 
-- name: place configuration
+- name: place configuration templated
   ansible.builtin.template:
     src: gitlab.rb.j2
     dest: /etc/gitlab/gitlab.rb
@@ -93,3 +93,18 @@
     validate: ruby -c %s
   notify:
     - run gitlab-ctl reconfigure
+  when:
+    - gitlab_configuration_file is not defined
+
+- name: place configuration static
+  ansible.builtin.copy:
+    src: gitlab.rb
+    dest: /etc/gitlab/gitlab.rb
+    owner: root
+    group: root
+    mode: "0600"
+    validate: ruby -c %s
+  notify:
+    - run gitlab-ctl reconfigure
+  when:
+    - gitlab_configuration_file is defined
