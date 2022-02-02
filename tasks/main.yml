@@ -98,7 +98,7 @@
 
 - name: place configuration static
   ansible.builtin.copy:
-    src: gitlab.rb
+    src: "{{ gitlab_configuration_file }}"
     dest: /etc/gitlab/gitlab.rb
     owner: root
     group: root
