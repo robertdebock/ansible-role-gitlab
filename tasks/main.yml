@@ -44,7 +44,7 @@
         gpgcheck: yes
         sslverify: yes
         sslcacert: /etc/pki/tls/certs/ca-bundle.crt
-        metadata_expire: 300
+        metadata_expire: "300"
   when:
     - ansible_pkg_mgr in [ "dnf", "yum" ]
 
