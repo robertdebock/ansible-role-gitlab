@@ -79,8 +79,8 @@
         group: root
         mode: "0640"
   when:
-    - gitlab_letsencrypt is defined
-    - not gitlab_letsencrypt
+    - gitlab_configuration_file is not defined
+    - gitlab_letsencrypt is defined and not gitlab_letsencrypt
     - '"https" in gitlab_external_url'
 
 - name: place configuration templated
