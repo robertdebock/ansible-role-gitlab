@@ -7,3 +7,5 @@
   roles:
     - role: ansible-role-gitlab
       gitlab_cleanup_ruby: no
+      gitlab_trusted_certs:
+        - isrgrootx1.pem # A root certificate for letsencrypt.

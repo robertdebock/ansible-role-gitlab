@@ -890,3 +890,11 @@
         - gitlab_letsencrypt_auto_renew
   when:
     - gitlab_configuration_file is not defined
+
+- name: test if gitlab_trusted_certs is set correctly
+  ansible.builtin.assert:
+    that:
+      - gitlab_trusted_certs is iterable
+    quiet: yes
+  when:
+    - gitlab_trusted_certs is defined

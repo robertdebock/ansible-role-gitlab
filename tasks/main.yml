@@ -63,21 +63,26 @@
         group: root
         mode: "0750"
 
-    - name: place ssl certificate
-      ansible.builtin.copy:
-        src: "{{ gitlab_ssl_crt }}"
-        dest: /etc/gitlab/ssl/{{ gitlab_external_url | urlsplit('hostname') }}.crt
-        owner: root
-        group: root
-        mode: "0644"
+    - name: place ssl material
+      block:
+        - name: place ssl certificate
+          ansible.builtin.copy:
+            src: "{{ gitlab_ssl_crt }}"
+            dest: /etc/gitlab/ssl/{{ gitlab_external_url | urlsplit('hostname') }}.crt
+            owner: root
+            group: root
+            mode: "0644"
 
-    - name: place ssl key
-      ansible.builtin.copy:
-        src: "{{ gitlab_ssl_key }}"
-        dest: /etc/gitlab/ssl/{{ gitlab_external_url | urlsplit('hostname') }}.key
-        owner: root
-        group: root
-        mode: "0640"
+        - name: place ssl key
+          ansible.builtin.copy:
+            src: "{{ gitlab_ssl_key }}"
+            dest: /etc/gitlab/ssl/{{ gitlab_external_url | urlsplit('hostname') }}.key
+            owner: root
+            group: root
+            mode: "0640"
+      when:
+        - gitlab_ssl_crt is defined
+        - gitlab_ssl_cey is defined
   when:
     - gitlab_configuration_file is not defined
     - gitlab_letsencrypt is defined and not gitlab_letsencrypt
@@ -95,6 +100,29 @@
     - run gitlab-ctl reconfigure
   when:
     - gitlab_configuration_file is not defined
+
+- name: place trusted-certs
+  block:
+    - name: make trusted-certs directories
+      file:
+        path: /etc/gitlab/trusted-certs
+        state: directory
+        owner: root
+        group: root
+        mode: "0755"
+
+    - name: place trusted certificates
+      ansible.builtin.copy:
+        src: "{{ item }}"
+        dest: /etc/gitlab/trusted-certs/{{ item }}
+        owner: root
+        group: root
+        mode: "0644"
+      notify:
+        - run gitlab-ctl reconfigure
+      loop: "{{ gitlab_trusted_certs }}"
+  when:
+    - gitlab_trusted_certs is defined
 
 - name: place configuration static
   ansible.builtin.copy:
