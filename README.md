@@ -19,6 +19,8 @@ This example is taken from `molecule/default/converge.yml` and is tested on each
   roles:
     - role: robertdebock.gitlab
       gitlab_cleanup_ruby: no
+      gitlab_trusted_certs:
+        - isrgrootx1.pem # A root certificate for letsencrypt.
 ```
 
 The machine needs to be prepared. In CI this is done using `molecule/default/prepare.yml`:
@@ -366,6 +368,13 @@ gitlab_letsencrypt: no
 # gitlab_letsencrypt_auto_renew_minute: nil
 # gitlab_letsencrypt_auto_renew_day_of_month: nil
 # gitlab_letsencrypy_auto_renew_log_directory: /var/log/gitlab/lets-encrypt
+
+# In case you need to trust a (CA) certificate to access remote resources,
+# like an LDAP server, download the (CA) certificate, place it in the `files`
+# directory and refer to it in the below list.
+# gitlab_trusted_certs:
+#   - my-ca-1.crt
+#   - my-1.crt
 ```
 
 ## [Requirements](#requirements)
