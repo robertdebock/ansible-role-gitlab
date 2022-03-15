@@ -760,7 +760,7 @@
       when:
         - gitlab_letsencrypt is defined
 
-    - name: test if gitlab_letsencrypt no is set correctly
+    - name: test if gitlab_ssl_* are set correctly
       ansible.builtin.assert:
         that:
           - gitlab_ssl_key is defined
