@@ -18,6 +18,7 @@ This example is taken from `molecule/default/converge.yml` and is tested on each
 
   roles:
     - role: robertdebock.gitlab
+      gitlab_letsencrypt: no
       gitlab_cleanup_ruby: no
       gitlab_trusted_certs:
         - isrgrootx1.pem # A root certificate for letsencrypt.
@@ -348,7 +349,7 @@ gitlab_rails_db_statements_limit: 1000
 
 # SSL settings
 # # If you do not want to use SSL, use this structure.
-gitlab_letsencrypt: no
+gitlab_letsencrypt: yes
 # gitlab_external_url: "http://gitlab.example.com" # (No `https` in the value.)
 # # If you bring your own certificates, use this structure.
 # gitlab_letsencrypt: no
@@ -410,7 +411,6 @@ The minimum version of Ansible required is 2.10, tests have been done to:
 - The previous version.
 - The current version.
 - The development version.
-
 
 
 If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-gitlab/issues)
