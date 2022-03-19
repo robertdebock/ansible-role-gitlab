@@ -157,14 +157,33 @@
       when:
         - gitlab_rails_ldap_enabled
 
-    - name: test if enterprise item in gitlab_rails_ldap_servers is set correctly
+    - name: test if group_base item in gitlab_rails_ldap_servers is set correctly
       ansible.builtin.assert:
         that:
-          - item.group_base is defined
           - item.group_base is string
-          - item.admin_group is defined
+        quiet: yes
+      loop: "{{ gitlab_rails_ldap_servers }}"
+      loop_control:
+        label: "{{ item.name }}"
+      when:
+        - gitlab_rails_ldap_enabled
+        - item.group_base is defined
+
+    - name: test if admin_group item in gitlab_rails_ldap_servers is set correctly
+      ansible.builtin.assert:
+        that:
           - item.admin_group is string
-          - item.sync_ssh_keys is defined
+        quiet: yes
+      loop: "{{ gitlab_rails_ldap_servers }}"
+      loop_control:
+        label: "{{ item.name }}"
+      when:
+        - gitlab_rails_ldap_enabled
+        - item.admin_group is defined
+
+    - name: test if sync_ssh_keys item in gitlab_rails_ldap_servers is set correctly
+      ansible.builtin.assert:
+        that:
           - item.sync_ssh_keys is boolean
         quiet: yes
       loop: "{{ gitlab_rails_ldap_servers }}"
@@ -172,25 +191,7 @@
         label: "{{ item.name }}"
       when:
         - gitlab_rails_ldap_enabled
-
-    - name: test if enterprise item in gitlab_rails_ldap_servers is not set
-      ansible.builtin.assert:
-        that:
-          - item.group_base is not defined
-          - item.group_base is not string
-          - item.admin_group is not defined
-          - item.admin_group is not string
-          - item.sync_ssh_keys not is defined
-          - item.sync_ssh_keys not is boolean
-        quiet: yes
-      loop: "{{ gitlab_rails_ldap_servers }}"
-      loop_control:
-        label: "{{ item.name }}"
-      when:
-        - gitlab_rails_ldap_server is defined
-        - gitlab_distribution == "community"
-
-    ##########
+        - item.sync_ssh_keys is defined
 
     - name: test if gitlab_rails_manage_backup_path is set correctly
       ansible.builtin.assert:
