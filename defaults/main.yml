@@ -131,6 +131,15 @@ gitlab_rails_backup_keep_time: 604800
 #   server_side_encryption_kms_key_id: "arn:aws:kms:YOUR-KEY-ID-HERE"
 # gitlab_rails_backup_storage_class: STANDARD
 
+# You can also save a backup on DigitalOcean Spaces.
+# gitlab_rails_backup_upload_connection:
+#   provider: AWS
+#   region: ams3
+#   aws_access_key_id: AKIAKIAKI
+#   aws_secret_access_key: secret123
+#   endpoint: https://ams3.digitaloceanspaces.com
+# gitlab_rails_backup_upload_remote_directory: my.s3.bucket
+
 # You can skip parts in a backup.
 # gitlab_rails_env:
 #   SKIP: db,uploads,repositories,builds,artifacts,lfs,registry,pages
