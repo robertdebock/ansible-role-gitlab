@@ -9,4 +9,4 @@
       gitlab_letsencrypt: no
       gitlab_cleanup_ruby: no
       gitlab_trusted_certs:
-        - isrgrootx1.pem # A root certificate for letsencrypt.
+        - isrgrootx1.pem  # A root certificate for letsencrypt.
