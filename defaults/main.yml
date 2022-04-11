@@ -5,7 +5,7 @@
 # Please have a look at this repository for available package version:
 # community: https://packages.gitlab.com/gitlab/gitlab-ce
 # enterprise: https://packages.gitlab.com/gitlab/gitlab-ee
-gitlab_version: 14.6.2
+gitlab_version: 14.9.2
 
 # A part of the version is the "release", mostly "0". See repositories above.
 gitlab_release: 0
@@ -32,6 +32,10 @@ gitlab_rails_time_zone: UTC
 # uninstalled. This makes the role not idempotent, so CI ruby is not un-
 # installed.
 gitlab_cleanup_ruby: yes
+
+# This role checks for outstanding database migrations. The role wil wait for
+# migrations to finish. This value is in minutes.
+gitlab_database_migrations_retries: 300
 
 # You can install all roles but not specifying any role, or select a few roles.
 # gitlab_roles:
