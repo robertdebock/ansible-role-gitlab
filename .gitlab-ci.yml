@@ -21,7 +21,7 @@ molecule:
       - image: "enterpriselinux"
         tag: "latest"
       - image: "ubuntu"
-        tag: "latest"
+        tag: "focal"
 
 galaxy:
   script:

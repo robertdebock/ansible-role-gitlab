@@ -38,7 +38,7 @@ jobs:
           - image: "enterpriselinux"
             tag: "latest"
           - image: "ubuntu"
-            tag: "latest"
+            tag: "focal"
     steps:
       - name: checkout
         uses: actions/checkout@v2
