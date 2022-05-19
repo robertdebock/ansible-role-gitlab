@@ -22,6 +22,12 @@
       - gitlab_distribution in [ "community", "enterprise" ]
     quiet: yes
 
+- name: test if gitlab_show_initial_root_password is set correctly
+  ansible.builtin.assert:
+    that:
+      - gitlab_show_initial_root_password is bool
+    quiet: yes
+
 - name: test if gitlab_configuration_file is set correctly
   ansible.builtin.assert:
     that:

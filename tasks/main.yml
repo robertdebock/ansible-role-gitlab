@@ -156,3 +156,15 @@
     - run gitlab-ctl reconfigure
   when:
     - gitlab_configuration_file is defined
+
+- name: show initial root password
+  block:
+    - name: read initial root password
+      ansible.builtin.slurp:
+        src: /etc/gitlab/initial_root_password
+      register: initial_root_password
+    - name: display initial root password
+      ansible.builtin.debug:
+        msg: "{{ initial_root_password['content'] | b64decode }}"
+  when:
+    - gitlab_show_initial_root_password
