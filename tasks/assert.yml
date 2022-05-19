@@ -25,7 +25,7 @@
 - name: test if gitlab_show_initial_root_password is set correctly
   ansible.builtin.assert:
     that:
-      - gitlab_show_initial_root_password is bool
+      - gitlab_show_initial_root_password is boolean
     quiet: yes
 
 - name: test if gitlab_configuration_file is set correctly
