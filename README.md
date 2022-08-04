@@ -47,9 +47,9 @@ The default values for the variables are set in `defaults/main.yml`:
 
 # Specify a specific version for GitLab to install.
 # Please have a look at this repository for available package version:
-# community: https://packages.gitlab.com/gitlab/gitlab-ce
-# enterprise: https://packages.gitlab.com/gitlab/gitlab-ee
-gitlab_version: 14.9.2
+# community: "https://packages.gitlab.com/gitlab/gitlab-ce"
+# enterprise: "https://packages.gitlab.com/gitlab/gitlab-ee"
+gitlab_version: "14.9.2"
 
 # A part of the version is the "release", mostly "0". See repositories above.
 gitlab_release: 0
@@ -188,7 +188,7 @@ gitlab_rails_backup_keep_time: 604800
 #   region: ams3
 #   aws_access_key_id: AKIAKIAKI
 #   aws_secret_access_key: secret123
-#   endpoint: https://ams3.digitaloceanspaces.com
+#   endpoint: "https://ams3.digitaloceanspaces.com"
 # gitlab_rails_backup_upload_remote_directory: my.s3.bucket
 
 # You can skip parts in a backup.
