@@ -32,6 +32,8 @@ jobs:
           - image: "enterpriselinux"
             tag: "7"
           - image: "enterpriselinux"
+            tag: "8"
+          - image: "enterpriselinux"
             tag: "latest"
           - image: "ubuntu"
             tag: "focal"
