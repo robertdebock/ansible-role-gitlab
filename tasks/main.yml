@@ -15,7 +15,7 @@
   ansible.builtin.package:
     name: ruby
   notify:
-    - uninstall ruby
+    - Uninstall ruby
 
 - name: Execute apt tasks
   block:
@@ -118,7 +118,7 @@
     mode: "0600"
     validate: ruby -c %s
   notify:
-    - run gitlab-ctl reconfigure
+    - Run gitlab-ctl reconfigure
   when:
     - gitlab_configuration_file is not defined
 
@@ -140,7 +140,7 @@
         group: root
         mode: "0644"
       notify:
-        - run gitlab-ctl reconfigure
+        - Run gitlab-ctl reconfigure
       loop: "{{ gitlab_trusted_certs }}"
   when:
     - gitlab_trusted_certs is defined
@@ -154,7 +154,7 @@
     mode: "0600"
     validate: ruby -c %s
   notify:
-    - run gitlab-ctl reconfigure
+    - Run gitlab-ctl reconfigure
   when:
     - gitlab_configuration_file is defined
 
