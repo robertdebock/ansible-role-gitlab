@@ -52,7 +52,7 @@ The default values for the variables are set in `defaults/main.yml`:
 # Please have a look at this repository for available package version:
 # community: "https://packages.gitlab.com/gitlab/gitlab-ce"
 # enterprise: "https://packages.gitlab.com/gitlab/gitlab-ee"
-gitlab_version: "14.9.2"
+gitlab_version: "15.5.1"
 
 # A part of the version is the "release", mostly "0". See repositories above.
 gitlab_release: 0
