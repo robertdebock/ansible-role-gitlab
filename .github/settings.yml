@@ -5,4 +5,4 @@
 repository:
   description: Install and configure GitLab on your system.
   homepage: https://robertdebock.nl/
-  topics: gitlab, ansible, molecule, tox, playbook, hacktoberfest
+  topics: gitlab, ansible, molecule, tox, playbook
