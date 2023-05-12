@@ -5,7 +5,7 @@
   gather_facts: no
 
   tasks:
-    - name: check gitlab-runsvdir service
+    - name: Check gitlab-runsvdir service
       ansible.builtin.service:
         name: gitlab-runsvdir
       check_mode: yes
@@ -13,11 +13,11 @@
       failed_when:
         - gitlab_service_check is changed
 
-    - name: check gitlab status
+    - name: Check gitlab status
       ansible.builtin.command:
         cmd: gitlab-ctl status
       changed_when: no
 
-    - name: see if web interface can be used
+    - name: See if web interface can be used
       ansible.builtin.uri:
         url: "http://localhost/users/sign_in"
