@@ -584,11 +584,10 @@
           - gitlab_rails_db_adapter is string
           - gitlab_rails_db_adapter in [ "mysql2", "postgresql" ]
 
-
     - name: assert | Test if gitlab_rails_db_adapter and gitlab_distribution are set correctly
       ansible.builtin.assert:
         that:
-          -gitlab_distribution == "enterprise"
+          - gitlab_distribution == "enterprise"
         quiet: yes
       when:
         - gitlab_rails_db_adapter == "mysql2"
