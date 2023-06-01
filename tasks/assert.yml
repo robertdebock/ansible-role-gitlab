@@ -587,7 +587,7 @@
 
     - name: assert | Test if gitlab_rails_db_adapter and gitlab_distribution are set correctly
       ansible.builtin.assert:
-        than:
+        that:
           -gitlab_distribution == "enterprise"
         quiet: yes
       when:
