@@ -93,7 +93,8 @@
     - name: Place ssl material
       when:
         - gitlab_ssl_crt is defined
-        - gitlab_ssl_cey is defined
+        - gitlab_ssl_key is defined
+        - gitlab_ssl_key is not none
       block:
         - name: Place ssl certificate
           ansible.builtin.copy:
