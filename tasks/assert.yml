@@ -5,6 +5,7 @@
     that:
       - gitlab_version is defined
       - gitlab_version is string
+      - gitlab_version is not none
     quiet: yes
 
 - name: assert | Test if gitlab_release is set correctly
@@ -32,6 +33,7 @@
   ansible.builtin.assert:
     that:
       - gitlab_configuration_file is string
+      - gitlab_configuration_file is not none
     quiet: yes
   when:
     - gitlab_configuration_file is defined
@@ -45,6 +47,7 @@
         that:
           - gitlab_external_url is defined
           - gitlab_external_url is string
+          - gitlab_external_url is not none
         quiet: yes
 
     - name: assert | Test if gitlab_rails_time_zone is set correctly
@@ -52,6 +55,7 @@
         that:
           - gitlab_rails_time_zone is defined
           - gitlab_rails_time_zone is string
+          - gitlab_rails_time_zone is not none
         quiet: yes
 
     - name: assert | Test if gitlab_cleanup_ruby is set correctly
@@ -130,17 +134,22 @@
         that:
           - item.name is defined
           - item.name is string
+          - item.name is not none
           - item.label is defined
           - item.port is defined
           - item.port is number
           - item.uid is defined
           - item.uid is string
+          - item.uid is not none
           - item.bind_dn is defined
           - item.bind_dn is string
+          - item.bind_dn is not none
           - item.password is defined
           - item.password is string
+          - item.password is not none
           - item.encryption is defined
           - item.encryption is string
+          - item.encryption is not none
           - item.encryption in [ "plain", "simple_tls", "start_tls" ]
           - item.verify_certificates is defined
           - item.verify_certificates is boolean
@@ -156,8 +165,10 @@
           - item.block_auto_created_users is boolean
           - item.base is defined
           - item.base is string
+          - item.base is not none
           - item.user_filter is defined
           - item.user_filter is string
+          - item.user_filter is not none
         quiet: yes
       loop: "{{ gitlab_rails_ldap_servers }}"
       loop_control:
@@ -169,6 +180,7 @@
       ansible.builtin.assert:
         that:
           - item.group_base is string
+          - item.group_base is not none
         quiet: yes
       loop: "{{ gitlab_rails_ldap_servers }}"
       loop_control:
@@ -181,6 +193,7 @@
       ansible.builtin.assert:
         that:
           - item.admin_group is string
+          - item.admin_group is not none
         quiet: yes
       loop: "{{ gitlab_rails_ldap_servers }}"
       loop_control:
@@ -213,6 +226,7 @@
       ansible.builtin.assert:
         that:
           - gitlab_rails_backup_path is string
+          - gitlab_rails_backup_path is not none
         quiet: yes
       when:
         - gitlab_rails_backup_path is defined
@@ -221,6 +235,7 @@
       ansible.builtin.assert:
         that:
           - gitlab_rails_backup_gitaly_backup_path is string
+          - gitlab_rails_backup_gitaly_backup_path is not none
         quiet: yes
       when:
         - gitlab_rails_backup_gitaly_backup_path is defined
@@ -229,6 +244,7 @@
       ansible.builtin.assert:
         that:
           - gitlab_rails_backup_archive_permissions is string
+          - gitlab_rails_backup_archive_permissions is not none
         quiet: yes
       when:
         - gitlab_rails_backup_archive_permissions is defined
@@ -237,6 +253,7 @@
       ansible.builtin.assert:
         that:
           - gitlab_rails_backup_pg_schema is string
+          - gitlab_rails_backup_pg_schema is not none
         quiet: yes
       when:
         - gitlab_rails_backup_pg_schema is defined
@@ -265,8 +282,10 @@
         that:
           - gitlab_rails_backup_upload_connection.aws_access_key_id is defined
           - gitlab_rails_backup_upload_connection.aws_access_key_id is string
+          - gitlab_rails_backup_upload_connection.aws_access_key_id is not none
           - gitlab_rails_backup_upload_connection.aws_secret_access_key is defined
           - gitlab_rails_backup_upload_connection.aws_secret_access_key is string
+          - gitlab_rails_backup_upload_connection.aws_secret_access_key is not none
           - gitlab_rails_backup_upload_connection.use_iam_profile is defined
           - gitlab_rails_backup_upload_connection.use_iam_profile is boolean
         quiet: yes
@@ -279,8 +298,10 @@
         that:
           - gitlab_rails_backup_upload_connection.azure_storage_account_name is defined
           - gitlab_rails_backup_upload_connection.azure_storage_account_name is string
+          - gitlab_rails_backup_upload_connection.azure_storage_account_name is not none
           - gitlab_rails_backup_upload_connection.azure_storage_access_key is defined
           - gitlab_rails_backup_upload_connection.azure_storage_access_key is string
+          - gitlab_rails_backup_upload_connection.azure_storage_access_key is not none
         quiet: yes
       when:
         - gitlab_rails_backup_upload_connection is defined
@@ -312,6 +333,7 @@
         that:
           - gitlab_rails_backup_upload_connection.local_root is defined
           - gitlab_rails_backup_upload_connection.local_root is string
+          - gitlab_rails_backup_upload_connection.local_root is not none
         quiet: yes
       when:
         - gitlab_rails_backup_upload_connection is defined
@@ -321,6 +343,7 @@
       ansible.builtin.assert:
         that:
           - gitlab_rails_backup_upload_remote_directory is string
+          - gitlab_rails_backup_upload_remote_directory is not none
         quiet: yes
       when:
         - gitlab_rails_backup_upload_remote_directory is defined
@@ -337,6 +360,7 @@
       ansible.builtin.assert:
         that:
           - gitlab_rails_backup_encryption is string
+          - gitlab_rails_backup_encryption is not none
         quiet: yes
       when:
         - gitlab_rails_backup_encryption is defined
@@ -345,6 +369,7 @@
       ansible.builtin.assert:
         that:
           - gitlab_rails_backup_encryption_key is string
+          - gitlab_rails_backup_encryption_key is not none
         quiet: yes
       when:
         - gitlab_rails_backup_encryption_key is defined
@@ -356,8 +381,10 @@
           - gitlab_rails_backup_upload_storage_options is mapping
           - gitlab_rails_backup_upload_storage_options.server_side_encryption is defined
           - gitlab_rails_backup_upload_storage_options.server_side_encryption is string
+          - gitlab_rails_backup_upload_storage_options.server_side_encryption is not none
           - gitlab_rails_backup_upload_storage_options.server_side_encryption_kms_key_id is defined
           - gitlab_rails_backup_upload_storage_options.server_side_encryption_kms_key_id is string
+          - gitlab_rails_backup_upload_storage_options.server_side_encryption_kms_key_id is not none
         quiet: yes
       when:
         - gitlab_rails_backup_encryption_key is defined
@@ -391,6 +418,7 @@
         that:
           - gitlab_rails_smtp_address is defined
           - gitlab_rails_smtp_address is string
+          - gitlab_rails_smtp_address is not none
         quiet: yes
       when:
         - gitlab_rails_smtp_enable
@@ -409,6 +437,7 @@
         that:
           - gitlab_rails_smtp_user_name is defined
           - gitlab_rails_smtp_user_name is string
+          - gitlab_rails_smtp_user_name is not none
         quiet: yes
       when:
         - gitlab_rails_smtp_enable
@@ -418,6 +447,7 @@
         that:
           - gitlab_rails_smtp_password is defined
           - gitlab_rails_smtp_password is string
+          - gitlab_rails_smtp_password is not none
         quiet: yes
       when:
         - gitlab_rails_smtp_enable
@@ -427,6 +457,7 @@
         that:
           - gitlab_rails_smtp_domain is defined
           - gitlab_rails_smtp_domain is string
+          - gitlab_rails_smtp_domain is not none
         quiet: yes
       when:
         - gitlab_rails_smtp_enable
@@ -436,6 +467,7 @@
         that:
           - gitlab_rails_smtp_authentication is defined
           - gitlab_rails_smtp_authentication is string
+          - gitlab_rails_smtp_authentication is not none
         quiet: yes
       when:
         - gitlab_rails_smtp_enable
@@ -482,6 +514,7 @@
         that:
           - gitlab_rails_smtp_ca_path is defined
           - gitlab_rails_smtp_ca_path is string
+          - gitlab_rails_smtp_ca_path is not none
         quiet: yes
       when:
         - gitlab_rails_smtp_enable
@@ -491,6 +524,7 @@
         that:
           - gitlab_rails_smtp_ca_file is defined
           - gitlab_rails_smtp_ca_file is string
+          - gitlab_rails_smtp_ca_file is not none
         quiet: yes
       when:
         - gitlab_rails_smtp_enable
@@ -507,6 +541,7 @@
         that:
           - gitlab_rails_gitlab_email_from is defined
           - gitlab_rails_gitlab_email_from is string
+          - gitlab_rails_gitlab_email_from is not none
         quiet: yes
       when:
         - gitlab_rails_gitlab_email_enabled
@@ -516,6 +551,7 @@
         that:
           - gitlab_rails_gitlab_email_display_name is defined
           - gitlab_rails_gitlab_email_display_name is string
+          - gitlab_rails_gitlab_email_display_name is not none
         quiet: yes
       when:
         - gitlab_rails_gitlab_email_enabled
@@ -525,6 +561,7 @@
         that:
           - gitlab_rails_gitlab_email_reply_to is defined
           - gitlab_rails_gitlab_email_reply_to is string
+          - gitlab_rails_gitlab_email_reply_to is not none
         quiet: yes
       when:
         - gitlab_rails_gitlab_email_enabled
@@ -534,6 +571,7 @@
         that:
           - gitlab_rails_gitlab_email_subject_suffix is defined
           - gitlab_rails_gitlab_email_subject_suffix is string
+          - gitlab_rails_gitlab_email_subject_suffix is not none
         quiet: yes
       when:
         - gitlab_rails_gitlab_email_enabled
@@ -552,6 +590,7 @@
         that:
           - gitlab_rails_gitlab_email_smime_key_file is defined
           - gitlab_rails_gitlab_email_smime_key_file is string
+          - gitlab_rails_gitlab_email_smime_key_file is not none
         quiet: yes
       when:
         - gitlab_rails_gitlab_email_enabled
@@ -562,6 +601,7 @@
         that:
           - gitlab_rails_gitlab_email_smime_cert_file is defined
           - gitlab_rails_gitlab_email_smime_cert_file is string
+          - gitlab_rails_gitlab_email_smime_cert_file is not none
         quiet: yes
       when:
         - gitlab_rails_gitlab_email_enabled
@@ -572,6 +612,7 @@
         that:
           - gitlab_rails_gitlab_email_smime_ca_certs_file is defined
           - gitlab_rails_gitlab_email_smime_ca_certs_file is string
+          - gitlab_rails_gitlab_email_smime_ca_certs_file is not none
         quiet: yes
       when:
         - gitlab_rails_gitlab_email_enabled
@@ -613,6 +654,7 @@
         that:
           - gitlab_rails_db_database is defined
           - gitlab_rails_db_database is string
+          - gitlab_rails_db_database is not none
         quiet: yes
 
     - name: assert | Test if gitlab_rails_db_username is set correctly
@@ -620,6 +662,7 @@
         that:
           - gitlab_rails_db_username is defined
           - gitlab_rails_db_username is string
+          - gitlab_rails_db_username is not none
         quiet: yes
 
     - name: assert | Test if gitlab_rails_db_password is set correctly
@@ -627,6 +670,7 @@
         that:
           - gitlab_rails_db_password is defined
           - gitlab_rails_db_password is string
+          - gitlab_rails_db_password is not none
         quiet: yes
 
     - name: assert | Test if gitlab_rails_db_host is set correctly
@@ -634,6 +678,7 @@
         that:
           - gitlab_rails_db_host is defined
           - gitlab_rails_db_host is string
+          - gitlab_rails_db_host is not none
         quiet: yes
       when:
         - gitlab_rails_db_socket is not defined
@@ -650,6 +695,7 @@
         that:
           - gitlab_rails_db_socket is defined
           - gitlab_rails_db_socket is string
+          - gitlab_rails_db_socket is not none
         quiet: yes
       when:
         - gitlab_rails_db_host is not defined
@@ -676,6 +722,7 @@
       ansible.builtin.assert:
         that:
           - gitlab_rails_db_sslrootcert is string
+          - gitlab_rails_db_sslrootcert is not none
         quiet: yes
       when:
         - gitlab_rails_db_sslrootcert is defined
@@ -684,6 +731,7 @@
       ansible.builtin.assert:
         that:
           - gitlab_rails_db_sslcert is string
+          - gitlab_rails_db_sslcert is not none
         quiet: yes
       when:
         - gitlab_rails_db_sslcert is defined
@@ -692,6 +740,7 @@
       ansible.builtin.assert:
         that:
           - gitlab_rails_db_sslkey is string
+          - gitlab_rails_db_sslkey is not none
         quiet: yes
       when:
         - gitlab_rails_db_sslkey is defined
@@ -764,6 +813,7 @@
       ansible.builtin.assert:
         that:
           - gitlab_rails_db_application_name is string
+          - gitlab_rails_db_application_name is not none
         quiet: yes
       when:
         - gitlab_rails_db_application_name is defined
@@ -781,8 +831,10 @@
         that:
           - gitlab_ssl_key is defined
           - gitlab_ssl_key is string
+          - gitlab_ssl_key is not none
           - gitlab_ssl_crt is defined
           - gitlab_ssl_crt is string
+          - gitlab_ssl_crt is not none
         quiet: yes
       when:
         - gitlab_letsencrypt is defined
@@ -804,6 +856,7 @@
         that:
           - gitlab_letsencrypt_group is defined
           - gitlab_letsencrypt_group is string
+          - gitlab_letsencrypt_group is not none
         quiet: yes
       when:
         - gitlab_letsencrypt is defined
@@ -824,6 +877,7 @@
         that:
           - gitlab_letsencrypt_owner is defined
           - gitlab_letsencrypt_owner is string
+          - gitlab_letsencrypt_owner is not none
         quiet: yes
       when:
         - gitlab_letsencrypt is defined
@@ -834,6 +888,7 @@
         that:
           - gitlab_letsencrypt_wwwroot is defined
           - gitlab_letsencrypt_wwwroot is string
+          - gitlab_letsencrypt_wwwroot is not none
         quiet: yes
       when:
         - gitlab_letsencrypt is defined
@@ -856,7 +911,8 @@
           - (gitlab_letsencrypt_auto_renew_hour is number and
              gitlab_letsencrypt_auto_renew_hour >= 0 and
              gitlab_letsencrypt_auto_renew_hour <= 24) or
-            (gitlab_letsencrypt_auto_renew_hour is string)
+            (gitlab_letsencrypt_auto_renew_hour is string and
+            (gitlab_letsencrypt_auto_renew_hour is not none)
         quiet: yes
       when:
         - gitlab_letsencrypt is defined
@@ -870,7 +926,8 @@
           - (gitlab_letsencrypt_auto_renew_minute is number and
              gitlab_letsencrypt_auto_renew_minute >= 0 and
              gitlab_letsencrypt_auto_renew_minute <= 59) or
-            (gitlab_letsencrypt_auto_renew_minute is string)
+            (gitlab_letsencrypt_auto_renew_minute is string and
+            (gitlab_letsencrypt_auto_renew_minute is not none)
         quiet: yes
       when:
         - gitlab_letsencrypt is defined
@@ -884,7 +941,8 @@
           - (gitlab_letsencrypt_auto_renew_day_of_month is number and
              gitlab_letsencrypt_auto_renew_day_of_month >= 0 and
              gitlab_letsencrypt_auto_renew_day_of_month <= 31) or
-            (gitlab_letsencrypt_auto_renew_day_of_month is string)
+            (gitlab_letsencrypt_auto_renew_day_of_month is string and
+            (gitlab_letsencrypt_auto_renew_day_of_month is not none)
         quiet: yes
       when:
         - gitlab_letsencrypt is defined
@@ -896,6 +954,7 @@
         that:
           - gitlab_letsencrypy_auto_renew_log_directory is defined
           - gitlab_letsencrypy_auto_renew_log_directory is string
+          - gitlab_letsencrypy_auto_renew_log_directory is not none
         quiet: yes
       when:
         - gitlab_letsencrypt is defined
