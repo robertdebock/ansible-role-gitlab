@@ -1,4 +1,4 @@
-# Ansible role [gitlab](#gitlab)
+# [Ansible role gitlab](#gitlab)
 
 Install and configure GitLab on your system.
 
