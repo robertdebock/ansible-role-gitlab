@@ -163,7 +163,7 @@ gitlab_rails_smtp_enable_starttls_auto: yes
 gitlab_rails_smtp_tls: no
 gitlab_rails_smtp_pool: no
 gitlab_rails_smtp_openssl_verify_mode: none
-gitlab_rails_smtp_ca_path: etc/ssl/certs
+gitlab_rails_smtp_ca_path: /etc/ssl/certs
 gitlab_rails_smtp_ca_file: /etc/ssl/certs/ca-certificates.crt
 
 # E-mail settings.
