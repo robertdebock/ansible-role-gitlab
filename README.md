@@ -368,7 +368,7 @@ gitlab_rails_db_statements_limit: 1000
 
 # SSL settings
 # # If you do not want to use SSL, use this structure.
-gitlab_letsencrypt: yes
+# gitlab_letsencrypt: no
 # gitlab_external_url: "http://gitlab.example.com" # (No `https` in the value.)
 # # If you bring your own certificates, use this structure.
 # gitlab_letsencrypt: no
@@ -379,6 +379,8 @@ gitlab_letsencrypt: yes
 # gitlab_letsencrypt: yes
 # gitlab_letsencrypt_contact_emails:
 #   - robert@meinit.nl
+# gitlab_acme_staging_endpoint: https://ca.internal/acme/acme/directory
+# gitlab_acme_production_endpoint: https://ca.internal/acme/acme/directory
 # gitlab_letsencrypt_group: root
 # gitlab_letsencrypt_key_size: 2048
 # gitlab_letsencrypt_owner: root
