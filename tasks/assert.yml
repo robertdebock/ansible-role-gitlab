@@ -912,7 +912,7 @@
              gitlab_letsencrypt_auto_renew_hour >= 0 and
              gitlab_letsencrypt_auto_renew_hour <= 24) or
             (gitlab_letsencrypt_auto_renew_hour is string and
-            (gitlab_letsencrypt_auto_renew_hour is not none)
+             gitlab_letsencrypt_auto_renew_hour is not none)
         quiet: yes
       when:
         - gitlab_letsencrypt is defined
@@ -927,7 +927,7 @@
              gitlab_letsencrypt_auto_renew_minute >= 0 and
              gitlab_letsencrypt_auto_renew_minute <= 59) or
             (gitlab_letsencrypt_auto_renew_minute is string and
-            (gitlab_letsencrypt_auto_renew_minute is not none)
+             gitlab_letsencrypt_auto_renew_minute is not none)
         quiet: yes
       when:
         - gitlab_letsencrypt is defined
@@ -942,19 +942,19 @@
              gitlab_letsencrypt_auto_renew_day_of_month >= 0 and
              gitlab_letsencrypt_auto_renew_day_of_month <= 31) or
             (gitlab_letsencrypt_auto_renew_day_of_month is string and
-            (gitlab_letsencrypt_auto_renew_day_of_month is not none)
+             gitlab_letsencrypt_auto_renew_day_of_month is not none)
         quiet: yes
       when:
         - gitlab_letsencrypt is defined
         - gitlab_letsencrypt
         - gitlab_letsencrypt_auto_renew
 
-    - name: assert | Test gitlab_letsencrypy_auto_renew_log_directory
+    - name: assert | Test gitlab_letsencrypt_auto_renew_log_directory
       ansible.builtin.assert:
         that:
-          - gitlab_letsencrypy_auto_renew_log_directory is defined
-          - gitlab_letsencrypy_auto_renew_log_directory is string
-          - gitlab_letsencrypy_auto_renew_log_directory is not none
+          - gitlab_letsencrypt_auto_renew_log_directory is defined
+          - gitlab_letsencrypt_auto_renew_log_directory is string
+          - gitlab_letsencrypt_auto_renew_log_directory is not none
         quiet: yes
       when:
         - gitlab_letsencrypt is defined

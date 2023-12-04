@@ -2421,7 +2421,9 @@ letsencrypt['auto_renew'] = {{ gitlab_letsencrypt_auto_renew | ternary('true', '
 letsencrypt['auto_renew_hour'] = {{ gitlab_letsencrypt_auto_renew_hour }}
 letsencrypt['auto_renew_minute'] = {{ gitlab_letsencrypt_auto_renew_minute }}
 letsencrypt['auto_renew_day_of_month'] = "{{ gitlab_letsencrypt_auto_renew_day_of_month }}"
-letsencrypt['auto_renew_log_directory'] = '{{ gitlab_letsencrypy_auto_renew_log_directory }}'
+letsencrypt['auto_renew_log_directory'] = '{{ gitlab_letsencrypt_auto_renew_log_directory }}'
+letsencrypt['acme_staging_endpoint'] = '{{ gitlab_acme_staging_endpoint }}'
+letsencrypt['acme_production_endpoint'] = '{{ gitlab_acme_production_endpoint }}'
 {% else %}
 letsencrypt['enable'] = nil
 {% endif %}

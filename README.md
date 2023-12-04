@@ -387,7 +387,7 @@ gitlab_letsencrypt: yes
 # gitlab_letsencrypt_auto_renew_hour: 0
 # gitlab_letsencrypt_auto_renew_minute: nil
 # gitlab_letsencrypt_auto_renew_day_of_month: nil
-# gitlab_letsencrypy_auto_renew_log_directory: /var/log/gitlab/lets-encrypt
+# gitlab_letsencrypt_auto_renew_log_directory: /var/log/gitlab/lets-encrypt
 
 # In case you need to trust a (CA) certificate to access remote resources,
 # like an LDAP server, download the (CA) certificate, place it in the `files`
