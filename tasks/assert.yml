@@ -968,3 +968,19 @@
     quiet: yes
   when:
     - gitlab_trusted_certs is defined
+
+- name: assert | Test gitlab_acme_staging_endpoint
+  ansible.builtin.assert:
+    that:
+      - gitlab_acme_staging_endpoint is string
+    quiet: yes
+  when:
+    - gitlab_acme_staging_endpoint is defined
+
+- name: assert | Test gitlab_acme_production_endpoint
+  ansible.builtin.assert:
+    that:
+      - gitlab_acme_production_endpoint is string
+    quiet: yes
+  when:
+    - gitlab_acme_production_endpoint is defined
