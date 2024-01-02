@@ -4,7 +4,7 @@ Install and configure GitLab on your system.
 
 |GitHub|GitLab|Downloads|Version|
 |------|------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-gitlab/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-gitlab/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-gitlab/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-gitlab)|[![downloads](https://img.shields.io/ansible/role/d/24502)](https://galaxy.ansible.com/robertdebock/gitlab)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-gitlab.svg)](https://github.com/robertdebock/ansible-role-gitlab/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-gitlab/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-gitlab/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-gitlab/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-gitlab)|[![downloads](https://img.shields.io/ansible/role/d/robertdebock/gitlab)](https://galaxy.ansible.com/robertdebock/gitlab)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-gitlab.svg)](https://github.com/robertdebock/ansible-role-gitlab/releases/)|
 
 ## [Example Playbook](#example-playbook)
 
