@@ -2409,7 +2409,7 @@ gitlab_rails['db_application_name'] = "{{ gitlab_rails_db_application_name }}"
 ################################################################################
 # Let's Encrypt integration
 ################################################################################
-{% if gitlab_letsencrypt %}
+{% if gitlab_letsencrypt is defined %}
 letsencrypt['enable'] = {{ gitlab_letsencrypt | ternary('true', 'false') }}
 letsencrypt['contact_emails'] = [ {% for email in gitlab_letsencrypt_contact_emails %}'{{ email }}'{% if not loop.last %}, {% endif %} {% endfor %} ]
 letsencrypt['group'] = '{{ gitlab_letsencrypt_group }}'
