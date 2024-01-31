@@ -723,7 +723,7 @@ gitlab_rails['db_encoding'] = "{{ gitlab_rails_db_encoding }}"
 {% if gitlab_rails_db_collation is defined %}
 gitlab_rails['db_collation'] = {{ gitlab_rails_db_collation }}
 {% endif %}
-{% if XXX is defined %}
+{% if gitlab_rails_db_database is defined %}
 gitlab_rails['db_database'] = "{{ gitlab_rails_db_database }}"
 {% endif %}
 {% if gitlab_rails_db_username is defined %}
