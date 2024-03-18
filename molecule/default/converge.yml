@@ -1,12 +1,12 @@
 ---
 - name: Converge
   hosts: all
-  become: yes
-  gather_facts: yes
+  become: true
+  gather_facts: true
 
   roles:
     - role: ansible-role-gitlab
-      gitlab_letsencrypt: no
-      gitlab_cleanup_ruby: no
+      gitlab_letsencrypt: false
+      gitlab_cleanup_ruby: false
       gitlab_trusted_certs:
         - isrgrootx1.pem  # A root certificate for letsencrypt.
