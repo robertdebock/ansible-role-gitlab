@@ -20,7 +20,7 @@
 
 - name: Execute apt tasks
   when:
-    - ansible_pkg_mgr == "apt"
+    - ansible_facts['pkg_mgr'] == "apt"
   block:
     - name: Install apt repository key
       ansible.builtin.apt_key:
@@ -28,12 +28,12 @@
 
     - name: Install apt repository
       ansible.builtin.apt_repository:
-        repo: "deb {{ gitlab_repository_url }} {{ ansible_distribution_release | lower }} main"
+        repo: "deb {{ gitlab_repository_url }} {{ ansible_facts['distribution_release'] | lower }} main"
         filename: "{{ gitlab_repository_name }}"
 
 - name: Execute yum/dnf tasks
   when:
-    - ansible_pkg_mgr in [ "dnf", "yum" ]
+    - ansible_facts['pkg_mgr'] in [ "dnf", "yum", "dnf5" ]
   block:
     - name: Install rpm repository key
       ansible.builtin.rpm_key:
