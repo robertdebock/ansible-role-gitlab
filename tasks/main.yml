@@ -115,9 +115,9 @@
             group: root
             mode: "0640"
 
-- name: Place configuration templated
+- name: Place configuration
   ansible.builtin.template:
-    src: gitlab.rb.j2
+    src: "{{ gitlab_configuration_file }}"
     dest: /etc/gitlab/gitlab.rb
     owner: root
     group: root
@@ -125,8 +125,6 @@
     validate: ruby -c %s
   notify:
     - Run gitlab-ctl reconfigure
-  when:
-    - gitlab_configuration_file is not defined
 
 - name: Place trusted-certs
   when:
@@ -151,20 +149,6 @@
       notify:
         - Run gitlab-ctl reconfigure
       loop: "{{ gitlab_trusted_certs }}"
-
-- name: Place configuration static
-  ansible.builtin.copy:
-    src: "{{ gitlab_configuration_file }}"
-    dest: /etc/gitlab/gitlab.rb
-    owner: root
-    group: root
-    mode: "0600"
-    validate: ruby -c %s
-  notify:
-    - Run gitlab-ctl reconfigure
-  when:
-    - gitlab_configuration_file is defined
-    - gitlab_configuration_file is not none
 
 - name: Show initial root password
   when:

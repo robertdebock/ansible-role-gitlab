@@ -63,10 +63,8 @@ gitlab_distribution: community
 # Would you like Ansible to show you the initial_root_password?
 gitlab_show_initial_root_password: false
 
-# Instead of defining the variables below, you can also simply copy a configuration file.
-# Place this file into the `files` directory that hosts the playbooks.
-# To configure GitLab using variables, comment this line
-# gitlab_configuration_file: gitlab.rb
+# Configuration file template
+gitlab_configuration_file: gitlab.rb.j2
 
 # The configuration below is only required when **not** placing a configuration file.
 
