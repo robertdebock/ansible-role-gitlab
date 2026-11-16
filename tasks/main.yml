@@ -23,8 +23,10 @@
     - ansible_facts['pkg_mgr'] == "apt"
   block:
     - name: Install apt repository key
-      ansible.builtin.apt_key:
+      ansible.builtin.get_url:
         url: "https://packages.gitlab.com/gpg.key"
+        dest: /etc/apt/trusted.gpg.d/gitlab.asc
+        mode: "0644"
 
     - name: Install apt repository
       ansible.builtin.apt_repository:
