@@ -58,14 +58,17 @@
     - name: Check if gitlab-rake is available
       ansible.builtin.command:
         cmd: gitlab-rake --version
-      changed_when: false
+      changed_when:
+        - false
       register: gitlab_rake_version
     - name: Use gitlab-rake to check db migrations
       ansible.builtin.command:
         cmd: "gitlab-rake db:migrate:status"
-      changed_when: false
+      changed_when:
+        - false
       register: gitlab_rake_database_migrations
-      until: '"  down    " not in gitlab_rake_database_migrations.stdout'
+      until:
+        - '"  down    " not in gitlab_rake_database_migrations.stdout'
       retries: "{{ gitlab_database_migrations_retries }}"
       delay: 60
       when:
